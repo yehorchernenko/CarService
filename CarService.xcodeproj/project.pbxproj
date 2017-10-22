@@ -15,6 +15,13 @@
 		74A868FF1F9BB12000DD0A77 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A868F01F9BB09B00DD0A77 /* SQLite.framework */; };
 		74A869041F9BB24A00DD0A77 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74A868F01F9BB09B00DD0A77 /* SQLite.framework */; };
 		74A869051F9BB24A00DD0A77 /* SQLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 74A868F01F9BB09B00DD0A77 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		74A869101F9BB6F800DD0A77 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A8690F1F9BB6F800DD0A77 /* Car.swift */; };
+		74A869121F9BB71600DD0A77 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869111F9BB71600DD0A77 /* Owner.swift */; };
+		74A869141F9BB73100DD0A77 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869131F9BB73100DD0A77 /* Service.swift */; };
+		74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869151F9BB74C00DD0A77 /* ServiceType.swift */; };
+		74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869171F9BB77D00DD0A77 /* Employee.swift */; };
+		74E20EDD1F9C9A8A0081E17B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */; };
+		74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +106,13 @@
 		74A868DD1F9BABB100DD0A77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74A868DF1F9BABB100DD0A77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74A868E51F9BB09B00DD0A77 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../Downloads/SQLite.swift-master 2/SQLite.xcodeproj"; sourceTree = "<group>"; };
+		74A8690F1F9BB6F800DD0A77 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		74A869111F9BB71600DD0A77 /* Owner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
+		74A869131F9BB73100DD0A77 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		74A869151F9BB74C00DD0A77 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
+		74A869171F9BB77D00DD0A77 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Blob.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +131,7 @@
 		74A868C71F9BABB000DD0A77 = {
 			isa = PBXGroup;
 			children = (
+				74E20EE51F9CAA580081E17B /* extension */,
 				74A868D21F9BABB100DD0A77 /* CarService */,
 				74A868D11F9BABB100DD0A77 /* Products */,
 				74A868E51F9BB09B00DD0A77 /* SQLite.xcodeproj */,
@@ -135,12 +150,14 @@
 		74A868D21F9BABB100DD0A77 /* CarService */ = {
 			isa = PBXGroup;
 			children = (
+				74A868DF1F9BABB100DD0A77 /* Info.plist */,
 				74A868D31F9BABB100DD0A77 /* AppDelegate.swift */,
-				74A868D51F9BABB100DD0A77 /* ViewController.swift */,
 				74A868D71F9BABB100DD0A77 /* Main.storyboard */,
 				74A868DA1F9BABB100DD0A77 /* Assets.xcassets */,
 				74A868DC1F9BABB100DD0A77 /* LaunchScreen.storyboard */,
-				74A868DF1F9BABB100DD0A77 /* Info.plist */,
+				74A8690B1F9BB69C00DD0A77 /* Views */,
+				74A869091F9BB67F00DD0A77 /* Conctrollers */,
+				74A8690A1F9BB69100DD0A77 /* Model */,
 			);
 			path = CarService;
 			sourceTree = "<group>";
@@ -164,6 +181,42 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		74A869091F9BB67F00DD0A77 /* Conctrollers */ = {
+			isa = PBXGroup;
+			children = (
+				74A868D51F9BABB100DD0A77 /* ViewController.swift */,
+				74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */,
+			);
+			path = Conctrollers;
+			sourceTree = "<group>";
+		};
+		74A8690A1F9BB69100DD0A77 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				74A8690F1F9BB6F800DD0A77 /* Car.swift */,
+				74A869111F9BB71600DD0A77 /* Owner.swift */,
+				74A869131F9BB73100DD0A77 /* Service.swift */,
+				74A869151F9BB74C00DD0A77 /* ServiceType.swift */,
+				74A869171F9BB77D00DD0A77 /* Employee.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74A8690B1F9BB69C00DD0A77 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		74E20EE51F9CAA580081E17B /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */,
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,7 +352,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A868D61F9BABB100DD0A77 /* ViewController.swift in Sources */,
+				74E20EDD1F9C9A8A0081E17B /* RegisterVC.swift in Sources */,
+				74A869121F9BB71600DD0A77 /* Owner.swift in Sources */,
+				74A869141F9BB73100DD0A77 /* Service.swift in Sources */,
+				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
+				74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */,
 				74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */,
+				74A869101F9BB6F800DD0A77 /* Car.swift in Sources */,
+				74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
