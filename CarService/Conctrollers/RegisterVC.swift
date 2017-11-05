@@ -34,54 +34,22 @@ class RegisterVC: UIViewController {
         else {return}
         
         let newOwner = Owner(profileImage: imageData, name: name, surname: surname, driverLicense: license, passport: passport, phone: phone, login: login, password: password)
-        
-        let insert = self.ownerTable.insert(self.loginExpression <- newOwner.login,
-                                            self.passwordExpression <- newOwner.password,
-                                            self.profileImageExpression <- newOwner.profileImage,
-                                            self.nameExpression <- newOwner.name,
-                                            self.surnameExpression <- newOwner.surname,
-                                            self.driverLicenseExpression <- newOwner.driverLicense,
-                                            self.passportExpression <- newOwner.passport,
-                                            self.phoneExpression <- newOwner.phone)
+
+        let insert = Owner.insert(profileImage: newOwner.profileImage, name: newOwner.name, surname: newOwner.surname, driverLicense: newOwner.driverLicense, passport: newOwner.passport, phone: newOwner.phone, login: newOwner.login, password: newOwner.password)
         
         do{
             try dataBase.run(insert)
+            print("New data were inserted")
             
-            print("New data had inserted")
+            dismiss(animated: true, completion: nil)
         } catch {
             print("DataBase inserting error: \(error.localizedDescription)")
         }
-        //let insert = self.usersTable.insert(self.name <- name, self.email <- email)
 
     }
     
     //MARK: Properties
     var dataBase: Connection!
-    
-    fileprivate var ownerTable: Table = Table("Owner")
-    
-    fileprivate let profileImageExpression = Expression<Blob>("profileImage")
-    fileprivate let nameExpression = Expression<String>("name")
-    fileprivate let surnameExpression = Expression<String>("surname")
-    fileprivate let driverLicenseExpression = Expression<Int>("driverLicense")
-    fileprivate let passportExpression = Expression<String>("passport")
-    fileprivate let phoneExpression = Expression<String>("phone")
-    fileprivate let loginExpression = Expression<String>("login") //primary key
-    fileprivate let passwordExpression = Expression<String>("password")
-    
-    func createTable() -> String{
-        let createTable = self.ownerTable.create { [unowned self] table in
-            table.column(self.loginExpression, primaryKey: true)
-            table.column(self.passwordExpression)
-            table.column(self.profileImageExpression)
-            table.column(self.nameExpression)
-            table.column(self.surnameExpression)
-            table.column(self.driverLicenseExpression)
-            table.column(self.passportExpression)
-            table.column(self.phoneExpression)
-        }
-        return createTable
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,13 +60,12 @@ class RegisterVC: UIViewController {
             let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
             dataBase = try Connection("\(path)/db.sqlite3")
             
-            try self.dataBase.run(createTable())
+            try self.dataBase.run(Owner.createTable())
             
             print("Succesful connection to data base")
         } catch{
             print("DataBase conection error: \(error.localizedDescription)")
         }
-        
         
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
     }

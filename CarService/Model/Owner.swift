@@ -40,7 +40,7 @@ class Owner{
     static let phoneExpression = Expression<String>("phone")
     static let loginExpression = Expression<String>("login") //primary key
     static let passwordExpression = Expression<String>("password")
-    
+
     class func createTable() -> String{
         let createTable = Owner.ownerTable.create {table in
             table.column(Owner.loginExpression, primaryKey: true)
@@ -54,6 +54,20 @@ class Owner{
         }
         return createTable
     }
+    
+    class func insert(profileImage: Blob, name:String,surname: String, driverLicense: Int, passport: String, phone: String, login: String, password: String) -> Insert{
+        let insert = self.ownerTable.insert(Owner.loginExpression <- login,
+                               Owner.passwordExpression <- password,
+                               Owner.profileImageExpression <- profileImage,
+                               Owner.nameExpression <- name,
+                               Owner.surnameExpression <- surname,
+                               Owner.driverLicenseExpression <- driverLicense,
+                               Owner.passportExpression <- passport,
+                               Owner.phoneExpression <- phone)
+        return insert
+    }
+    
+
 }
 
 
