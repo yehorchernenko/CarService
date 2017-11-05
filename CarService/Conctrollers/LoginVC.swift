@@ -27,7 +27,7 @@ class LoginVC: UIViewController {
             do{
                 for owner in try dataBase.prepare(Owner.ownerTable.select(Owner.loginExpression,Owner.passwordExpression)){
                     if owner[Owner.loginExpression] == login && owner[Owner.passwordExpression] == password{
-                        print("Catched")
+                        performSegue(withIdentifier: "ownerProfileSegue", sender: nil)
                     }
                 }
             }catch{
@@ -54,6 +54,14 @@ class LoginVC: UIViewController {
         }
         
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let navC = segue.destination as? UINavigationController{
+            if let ownerProfileVC = navC.childViewControllers.first as? OwnerProfileVC{
+                ownerProfileVC.login = loginTextField.text
+            }
+        }
     }
 
 }

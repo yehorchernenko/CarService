@@ -7,29 +7,69 @@
 //
 
 import UIKit
+import SQLite
 
 class OwnerProfileVC: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    //MARK: - Properties
+    var login: String?
+    var dataBase: Connection!
+    
+    //MARK: - Outlets
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var driverLicenseTextField: UITextField!
+    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var passportTextField: UITextField!
+    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        do{
+            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
+            dataBase = try Connection("\(path)/db.sqlite3")
+            
+            print("Succesful connection to data base")
+        } catch{
+            print("DataBase conection error: \(error.localizedDescription)")
+        }
+        
+        fillTextFields()
+        //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
     }
-    */
-
+    
+    private func fillTextFields(){
+        if let ownerLogin = login{
+            let ownerTable = Owner.ownerTable.where(Owner.loginExpression == ownerLogin).limit(1)
+            
+            do{
+                let owner = try dataBase.pluck(ownerTable)
+                
+                nameTextField.text = owner?[Owner.loginExpression]
+                surnameTextField.text = owner?[Owner.surnameExpression]
+                driverLicenseTextField.text = String(describing: owner?[Owner.driverLicenseExpression])
+                phoneTextField.text = owner?[Owner.phoneExpression]
+                loginTextField.text = owner?[Owner.loginExpression]
+                passwordTextField.text = owner?[Owner.passwordExpression]
+                passportTextField.text = owner?[Owner.passportExpression]
+                
+                if let imageBlob = owner?[Owner.profileImageExpression]{
+                profileImageView.image = UIImage.fromDatatypeValue(imageBlob)
+                }
+                
+                
+                
+            } catch {
+                print("Error during filling profile text fieds: \(error.localizedDescription)")
+            }
+        }
+    }
 }
