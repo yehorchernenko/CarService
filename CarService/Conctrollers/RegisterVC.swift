@@ -50,6 +50,7 @@ class RegisterVC: UIViewController {
     
     //MARK: Properties
     var dataBase: Connection!
+    let picker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +69,8 @@ class RegisterVC: UIViewController {
         }
         
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+        setGesture()
+        picker.delegate = self
     }
     
     @objc func keyboardWillShow(notification: Notification){
@@ -86,5 +89,30 @@ class RegisterVC: UIViewController {
         }
     }
 
+    private func setGesture(){
+        let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
+        profileImage.addGestureRecognizer(imageViewGesture)
+    }
+    
+    @objc private func showImagePicker(recognizer: UIGestureRecognizer){
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
+    }
+}
+
+extension RegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        profileImage.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
