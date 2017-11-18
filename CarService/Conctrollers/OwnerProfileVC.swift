@@ -16,6 +16,9 @@ class OwnerProfileVC: UIViewController {
     var dataBase: Connection!
     
     //MARK: - Outlets
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var driverLicenseTextField: UITextField!
@@ -29,6 +32,13 @@ class OwnerProfileVC: UIViewController {
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         
     }
+    
+    @IBAction func addCarButtonPressed(_ sender: UIButton) {
+        let addView = AddCarPopUpView(login: "asd")
+        addView.show(animated: true)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +58,8 @@ class OwnerProfileVC: UIViewController {
     
     private func fillTextFields(){
         if let ownerLogin = login{
-            let ownerTable = Owner.ownerTable.where(Owner.loginExpression == ownerLogin).limit(1)
+            //SELECT * FROM Owner WHERE login == ownerLogin LIMIT 1
+            let ownerTable = Owner.table.where(Owner.loginExpression == ownerLogin).limit(1)
             
             do{
                 let owner = try dataBase.pluck(ownerTable)
@@ -71,5 +82,15 @@ class OwnerProfileVC: UIViewController {
                 print("Error during filling profile text fieds: \(error.localizedDescription)")
             }
         }
+    }
+}
+
+extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }

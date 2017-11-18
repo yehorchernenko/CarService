@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431605C1FB88FE600B9ABFE /* CarCell.swift */; };
+		7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7431605D1FB88FE600B9ABFE /* CarCell.xib */; };
 		74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A868D31F9BABB100DD0A77 /* AppDelegate.swift */; };
 		74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A868D71F9BABB100DD0A77 /* Main.storyboard */; };
 		74A868DB1F9BABB100DD0A77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A868DA1F9BABB100DD0A77 /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 		74A869141F9BB73100DD0A77 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869131F9BB73100DD0A77 /* Service.swift */; };
 		74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869151F9BB74C00DD0A77 /* ServiceType.swift */; };
 		74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869171F9BB77D00DD0A77 /* Employee.swift */; };
+		74A919AC1FB8A76E00056EAD /* AddCarPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */; };
+		74A919AF1FB8A7C500056EAD /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A919AE1FB8A7C500056EAD /* Modal.swift */; };
 		74E20EDD1F9C9A8A0081E17B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */; };
 		74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */; };
 		74FAF4361FAF292800BFF755 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FAF4111FAF28C600BFF755 /* SQLite.framework */; };
@@ -246,6 +250,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7431605C1FB88FE600B9ABFE /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
+		7431605D1FB88FE600B9ABFE /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
 		74A868D01F9BABB100DD0A77 /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A868D31F9BABB100DD0A77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A868D81F9BABB100DD0A77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -257,6 +263,8 @@
 		74A869131F9BB73100DD0A77 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		74A869151F9BB74C00DD0A77 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		74A869171F9BB77D00DD0A77 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
+		74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarPopUpView.swift; sourceTree = "<group>"; };
+		74A919AE1FB8A7C500056EAD /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Blob.swift"; sourceTree = "<group>"; };
 		74FAF3D61FAF28A500BFF755 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../Downloads/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
@@ -306,6 +314,7 @@
 				74A868D71F9BABB100DD0A77 /* Main.storyboard */,
 				74A868DA1F9BABB100DD0A77 /* Assets.xcassets */,
 				74A868DC1F9BABB100DD0A77 /* LaunchScreen.storyboard */,
+				74A919AD1FB8A7A600056EAD /* Protocol */,
 				74A8690B1F9BB69C00DD0A77 /* Views */,
 				74A869091F9BB67F00DD0A77 /* Conctrollers */,
 				74A8690A1F9BB69100DD0A77 /* Model */,
@@ -349,8 +358,19 @@
 		74A8690B1F9BB69C00DD0A77 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7431605C1FB88FE600B9ABFE /* CarCell.swift */,
+				7431605D1FB88FE600B9ABFE /* CarCell.xib */,
+				74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		74A919AD1FB8A7A600056EAD /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				74A919AE1FB8A7C500056EAD /* Modal.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		74E20EE51F9CAA580081E17B /* extension */ = {
@@ -697,6 +717,7 @@
 			files = (
 				74A868DE1F9BABB100DD0A77 /* LaunchScreen.storyboard in Resources */,
 				74A868DB1F9BABB100DD0A77 /* Assets.xcassets in Resources */,
+				7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */,
 				74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,11 +734,14 @@
 				74FAF46D1FAF3C9C00BFF755 /* OwnerProfileVC.swift in Sources */,
 				74A869141F9BB73100DD0A77 /* Service.swift in Sources */,
 				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
+				7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */,
 				74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */,
 				74FAF46B1FAF359800BFF755 /* LoginVC.swift in Sources */,
 				74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */,
 				74A869101F9BB6F800DD0A77 /* Car.swift in Sources */,
+				74A919AC1FB8A76E00056EAD /* AddCarPopUpView.swift in Sources */,
 				74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */,
+				74A919AF1FB8A7C500056EAD /* Modal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

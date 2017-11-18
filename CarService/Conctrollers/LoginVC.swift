@@ -25,7 +25,8 @@ class LoginVC: UIViewController {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             do{
-                for owner in try dataBase.prepare(Owner.ownerTable.select(Owner.loginExpression,Owner.passwordExpression)){
+                //SELECT login,password FROM Owner;
+                for owner in try dataBase.prepare(Owner.table.select(Owner.loginExpression,Owner.passwordExpression)){
                     if owner[Owner.loginExpression] == login && owner[Owner.passwordExpression] == password{
                         performSegue(withIdentifier: "ownerProfileSegue", sender: nil)
                     }
