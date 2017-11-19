@@ -42,9 +42,9 @@ class Owner{
     static let passwordExpression = Expression<String>("password")
 
     
-    //CREATE TABLE Owner (login NOT NULL PRIMARY KEY VARCHAR(255), password....
+    //CREATE TABLE Owner IF NOT EXISTS(login NOT NULL PRIMARY KEY VARCHAR(255), password....
     class func createTable() -> String{
-        let createTable = Owner.table.create {table in
+        let createTable = Owner.table.create(ifNotExists: true) {table in
             table.column(Owner.loginExpression, primaryKey: true)
             table.column(Owner.passwordExpression)
             table.column(Owner.profileImageExpression)

@@ -31,14 +31,17 @@ class RegisterVC: UIViewController {
             let phone = phoneLbl.text,
             let login = loginLbl.text,
             let password = passwordLbl.text
-        else {return}
+        else {
+            somethingGoWrongAlert(message: "Please fill all fields")
+            return
+        }
         
         let newOwner = Owner(profileImage: imageData, name: name, surname: surname, driverLicense: license, passport: passport, phone: phone, login: login, password: password)
 
         let insert = Owner.insert(profileImage: newOwner.profileImage, name: newOwner.name, surname: newOwner.surname, driverLicense: newOwner.driverLicense, passport: newOwner.passport, phone: newOwner.phone, login: newOwner.login, password: newOwner.password)
         
         do{
-            try dataBase.run(insert)
+            try DataBase.shared.connection.run(insert)
             print("New data were inserted")
             
             dismiss(animated: true, completion: nil)
@@ -49,7 +52,6 @@ class RegisterVC: UIViewController {
     }
     
     //MARK: Properties
-    var dataBase: Connection!
     let picker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -58,16 +60,10 @@ class RegisterVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterVC.keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         do{
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-            dataBase = try Connection("\(path)/db.sqlite3")
-            
-            try self.dataBase.run(Owner.createTable())
-            
-            print("Succesful connection to data base")
-        } catch{
-            print("DataBase conection error: \(error.localizedDescription)")
+            try DataBase.shared.connection.run(Owner.createTable())
+        } catch {
+            print("Can't create Owner table")
         }
-        
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
         setGesture()
         picker.delegate = self

@@ -28,38 +28,40 @@ class Car{
     
     static let table = Table("Car")
     
-    static let ownerExpression = Expression<String>("owner")
+    static let ownerExpression = Expression<String>("login")
     static let brandExpression = Expression<String>("brand")
     static let modelExpression = Expression<String>("model")
-    static let serialNumberExpression = Expression<Int>("serialNumber")
+    static let serialNumberExpression = Expression<Int>("serialNumber")//primary key
     static let imageExpression = Expression<Blob>("image")
     static let colorExpression = Expression<String>("color")
     
     
-    //CREATE TABLE Car (serialNumber NOT NULL PRIMARY KEY VARCHAR(255), FOREIGN KEY(owner) REFERENCES Owner()
+    //CREATE TABLE Car IF NOT EXISTS (serialNumber NOT NULL PRIMARY KEY VARCHAR(255), FOREIGN KEY(owner) REFERENCES Owner()
     class func createTable() -> String{
-        let createTable = Car.table.create { (table) in
+        let createTable = Car.table.create(ifNotExists: true) { (table) in
             table.column(Car.serialNumberExpression, primaryKey: true)
-            table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression)
-            table.column(Car.modelExpression)
+            table.column(Car.ownerExpression)
             table.column(Car.brandExpression)
+            table.column(Car.modelExpression)
             table.column(Car.imageExpression)
             table.column(Car.colorExpression)
+            
+            table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression)
         }
         return createTable
     }
     
     //INSERT INTO Car (owner,brand.....) VALUES (......)
     class func insert(owner: String, brand: String, model: String,serialNumber: Int, image: Blob, color: String) -> Insert{
-            let insert = self.table.insert(Car.ownerExpression <- owner,
-                                           Car.brandExpression <- brand,
-                                           Car.modelExpression <- model,
-                                           Car.serialNumberExpression <- serialNumber,
-                                           Car.imageExpression <- image,
-                                           Car.colorExpression <- color)
+        let insert = self.table.insert(Car.serialNumberExpression <- serialNumber,
+                                       Car.ownerExpression <- owner,
+                                       Car.brandExpression <- brand,
+                                       Car.modelExpression <- model,
+                                       Car.imageExpression <- image,
+                                       Car.colorExpression <- color)
         return insert
     }
     
-
+    
     
 }

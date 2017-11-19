@@ -13,8 +13,8 @@ class OwnerProfileVC: UIViewController {
     
     //MARK: - Properties
     var login: String?
-    var dataBase: Connection!
-    
+    let carCellNib = UINib(nibName: "CarCell", bundle: nil)
+    var cars = [Car]()
     //MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,27 +33,26 @@ class OwnerProfileVC: UIViewController {
         
     }
     
-    @IBAction func addCarButtonPressed(_ sender: UIButton) {
-        let addView = AddCarPopUpView(login: "asd")
-        addView.show(animated: true)
-    }
+    @IBAction func addCarButtonPressed(_ sender: UIButton) {}
     
-    
+    @IBAction func unwindToProfile(segue: UIStoryboardSegue) {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do{
-            let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-            dataBase = try Connection("\(path)/db.sqlite3")
-            
-            print("Succesful connection to data base")
-        } catch{
-            print("DataBase conection error: \(error.localizedDescription)")
-        }
+        tableView.register(carCellNib, forCellReuseIdentifier: carCellIdentifier)
         
         fillTextFields()
+        
+
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        retrieveCars { [weak self] (cars) in
+            self?.cars = cars
+            self?.tableView.reloadData()
+        }
     }
     
     private func fillTextFields(){
@@ -62,7 +61,7 @@ class OwnerProfileVC: UIViewController {
             let ownerTable = Owner.table.where(Owner.loginExpression == ownerLogin).limit(1)
             
             do{
-                let owner = try dataBase.pluck(ownerTable)
+                let owner = try DataBase.shared.connection.pluck(ownerTable)
                 
                 nameTextField.text = owner?[Owner.loginExpression]
                 surnameTextField.text = owner?[Owner.surnameExpression]
@@ -77,20 +76,55 @@ class OwnerProfileVC: UIViewController {
                 }
                 
                 
-                
             } catch {
                 print("Error during filling profile text fieds: \(error.localizedDescription)")
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let carVC = segue.destination as? CarVC{
+            carVC.login = loginTextField.text
+        }
+    }
+    
+    //MARK: Retrieve owner cars
+    
+    private func retrieveCars(cars: @escaping ([Car]) -> Void){
+        guard let ownerLogin = login else {return}
+        var retrivedCars = [Car]()
+        do{
+            for ownerCar in try DataBase.shared.connection.prepare(Car.table.filter(Car.ownerExpression == ownerLogin)){
+                
+                if ownerCar[Car.ownerExpression] == ownerLogin{
+                    let car = Car(owner: ownerCar[Car.ownerExpression], brand: ownerCar[Car.brandExpression], model: ownerCar[Car.modelExpression], serialNumber: ownerCar[Car.serialNumberExpression], image: ownerCar[Car.imageExpression], color: ownerCar[Car.colorExpression])
+                
+                    //print(ownerCar)
+                    retrivedCars.append(car)
+                }
+            }
+        } catch{
+            print("Car retrieve error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            cars(retrivedCars)
         }
     }
 }
 
 extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return cars.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: carCellIdentifier, for: indexPath) as! CarCell
+        cell.carImageView.image = UIImage.fromDatatypeValue(cars[indexPath.row].image)
+        cell.serialNumberLabel.text = "\(cars[indexPath.row].serialNumber)"
+        cell.brandLabel.text = cars[indexPath.row].brand
+        cell.modelLabel.text = cars[indexPath.row].model
+        cell.ownerLabel.text = cars[indexPath.row].owner
+        return cell
     }
 }

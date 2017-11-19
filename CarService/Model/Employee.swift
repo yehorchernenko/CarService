@@ -6,4 +6,6 @@
 //  Copyright © 2017 Egor. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import SQLite
+

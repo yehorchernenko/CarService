@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742CFDAA1FC08D1F00142F30 /* DataBaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDA91FC08D1F00142F30 /* DataBaseConnection.swift */; };
+		742CFDAC1FC099AC00142F30 /* CarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDAB1FC099AC00142F30 /* CarVC.swift */; };
+		742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDAE1FC0A1B700142F30 /* Constants.swift */; };
 		7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431605C1FB88FE600B9ABFE /* CarCell.swift */; };
 		7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7431605D1FB88FE600B9ABFE /* CarCell.xib */; };
+		74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */; };
 		74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A868D31F9BABB100DD0A77 /* AppDelegate.swift */; };
 		74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A868D71F9BABB100DD0A77 /* Main.storyboard */; };
 		74A868DB1F9BABB100DD0A77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74A868DA1F9BABB100DD0A77 /* Assets.xcassets */; };
@@ -18,8 +22,6 @@
 		74A869141F9BB73100DD0A77 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869131F9BB73100DD0A77 /* Service.swift */; };
 		74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869151F9BB74C00DD0A77 /* ServiceType.swift */; };
 		74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A869171F9BB77D00DD0A77 /* Employee.swift */; };
-		74A919AC1FB8A76E00056EAD /* AddCarPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */; };
-		74A919AF1FB8A7C500056EAD /* Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A919AE1FB8A7C500056EAD /* Modal.swift */; };
 		74E20EDD1F9C9A8A0081E17B /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */; };
 		74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */; };
 		74FAF4361FAF292800BFF755 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FAF4111FAF28C600BFF755 /* SQLite.framework */; };
@@ -250,8 +252,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		742CFDA91FC08D1F00142F30 /* DataBaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseConnection.swift; sourceTree = "<group>"; };
+		742CFDAB1FC099AC00142F30 /* CarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarVC.swift; sourceTree = "<group>"; };
+		742CFDAE1FC0A1B700142F30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7431605C1FB88FE600B9ABFE /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		7431605D1FB88FE600B9ABFE /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
+		74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + SomethongGoWrongAlert.swift"; sourceTree = "<group>"; };
 		74A868D01F9BABB100DD0A77 /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A868D31F9BABB100DD0A77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74A868D81F9BABB100DD0A77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -263,8 +269,6 @@
 		74A869131F9BB73100DD0A77 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		74A869151F9BB74C00DD0A77 /* ServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceType.swift; sourceTree = "<group>"; };
 		74A869171F9BB77D00DD0A77 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
-		74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCarPopUpView.swift; sourceTree = "<group>"; };
-		74A919AE1FB8A7C500056EAD /* Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modal.swift; sourceTree = "<group>"; };
 		74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		74E20EE61F9CAA7A0081E17B /* UIImage + Blob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Blob.swift"; sourceTree = "<group>"; };
 		74FAF3D61FAF28A500BFF755 /* SQLite.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SQLite.xcodeproj; path = "../../Downloads/SQLite.swift-master/SQLite.xcodeproj"; sourceTree = "<group>"; };
@@ -288,6 +292,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		742CFDAD1FC0A1A000142F30 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				742CFDAE1FC0A1B700142F30 /* Constants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		74A0CF381FC1B14900BF78DE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		74A868C71F9BABB000DD0A77 = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +329,8 @@
 		74A868D21F9BABB100DD0A77 /* CarService */ = {
 			isa = PBXGroup;
 			children = (
+				74A0CF381FC1B14900BF78DE /* Extension */,
+				742CFDAD1FC0A1A000142F30 /* Helper */,
 				74A868DF1F9BABB100DD0A77 /* Info.plist */,
 				74A868D31F9BABB100DD0A77 /* AppDelegate.swift */,
 				74A868D71F9BABB100DD0A77 /* Main.storyboard */,
@@ -339,6 +361,7 @@
 				74E20EDC1F9C9A8A0081E17B /* RegisterVC.swift */,
 				74FAF46A1FAF359800BFF755 /* LoginVC.swift */,
 				74FAF46C1FAF3C9C00BFF755 /* OwnerProfileVC.swift */,
+				742CFDAB1FC099AC00142F30 /* CarVC.swift */,
 			);
 			path = Conctrollers;
 			sourceTree = "<group>";
@@ -351,6 +374,7 @@
 				74A869131F9BB73100DD0A77 /* Service.swift */,
 				74A869151F9BB74C00DD0A77 /* ServiceType.swift */,
 				74A869171F9BB77D00DD0A77 /* Employee.swift */,
+				742CFDA91FC08D1F00142F30 /* DataBaseConnection.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -360,7 +384,6 @@
 			children = (
 				7431605C1FB88FE600B9ABFE /* CarCell.swift */,
 				7431605D1FB88FE600B9ABFE /* CarCell.xib */,
-				74A919AB1FB8A76E00056EAD /* AddCarPopUpView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,7 +391,6 @@
 		74A919AD1FB8A7A600056EAD /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				74A919AE1FB8A7C500056EAD /* Modal.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -729,19 +751,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				742CFDAA1FC08D1F00142F30 /* DataBaseConnection.swift in Sources */,
 				74E20EDD1F9C9A8A0081E17B /* RegisterVC.swift in Sources */,
 				74A869121F9BB71600DD0A77 /* Owner.swift in Sources */,
 				74FAF46D1FAF3C9C00BFF755 /* OwnerProfileVC.swift in Sources */,
 				74A869141F9BB73100DD0A77 /* Service.swift in Sources */,
 				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
 				7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */,
+				742CFDAC1FC099AC00142F30 /* CarVC.swift in Sources */,
 				74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */,
 				74FAF46B1FAF359800BFF755 /* LoginVC.swift in Sources */,
 				74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */,
+				74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */,
+				742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */,
 				74A869101F9BB6F800DD0A77 /* Car.swift in Sources */,
-				74A919AC1FB8A76E00056EAD /* AddCarPopUpView.swift in Sources */,
 				74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */,
-				74A919AF1FB8A7C500056EAD /* Modal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
