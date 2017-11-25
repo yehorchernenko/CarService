@@ -38,13 +38,13 @@ class Car{
     
     //CREATE TABLE Car IF NOT EXISTS (serialNumber NOT NULL PRIMARY KEY VARCHAR(255), FOREIGN KEY(owner) REFERENCES Owner()
     class func createTable() -> String{
-        let createTable = Car.table.create(ifNotExists: true) { (table) in
-            table.column(Car.serialNumberExpression, primaryKey: true)
-            table.column(Car.ownerExpression)
-            table.column(Car.brandExpression)
-            table.column(Car.modelExpression)
-            table.column(Car.imageExpression)
-            table.column(Car.colorExpression)
+        let createTable = table.create(ifNotExists: true) { (table) in
+            table.column(serialNumberExpression, primaryKey: true)
+            table.column(ownerExpression)
+            table.column(brandExpression)
+            table.column(modelExpression)
+            table.column(imageExpression)
+            table.column(colorExpression)
             
             table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression)
         }
@@ -53,15 +53,34 @@ class Car{
     
     //INSERT INTO Car (owner,brand.....) VALUES (......)
     class func insert(owner: String, brand: String, model: String,serialNumber: Int, image: Blob, color: String) -> Insert{
-        let insert = self.table.insert(Car.serialNumberExpression <- serialNumber,
-                                       Car.ownerExpression <- owner,
-                                       Car.brandExpression <- brand,
-                                       Car.modelExpression <- model,
-                                       Car.imageExpression <- image,
-                                       Car.colorExpression <- color)
+        let insert = self.table.insert(serialNumberExpression <- serialNumber,
+                                       ownerExpression <- owner,
+                                       brandExpression <- brand,
+                                       modelExpression <- model,
+                                       imageExpression <- image,
+                                       colorExpression <- color)
         return insert
     }
     
     
+    //SELECT * FROM Car WHERE login == login
+    class func retrieveCarsForOwner(login: String, cars: @escaping ([Car]) -> Void){
+        var retrievedCars = [Car]()
+        
+        do{
+            for car in try DataBase.shared.connection.prepare(table.filter(ownerExpression == login)){
+                
+                let ownerCar = Car(owner: car[ownerExpression], brand: car[brandExpression], model: car[modelExpression], serialNumber: car[serialNumberExpression], image: car[imageExpression], color: car[colorExpression])
+                
+                retrievedCars.append(ownerCar)
+            }
+        } catch {
+             print("Car retrieve error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            cars(retrievedCars)
+        }
+    }
     
 }

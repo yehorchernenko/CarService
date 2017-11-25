@@ -40,33 +40,32 @@ class Owner{
     static let phoneExpression = Expression<String>("phone")
     static let loginExpression = Expression<String>("login") //primary key
     static let passwordExpression = Expression<String>("password")
-
     
     //CREATE TABLE Owner IF NOT EXISTS(login NOT NULL PRIMARY KEY VARCHAR(255), password....
     class func createTable() -> String{
-        let createTable = Owner.table.create(ifNotExists: true) {table in
-            table.column(Owner.loginExpression, primaryKey: true)
-            table.column(Owner.passwordExpression)
-            table.column(Owner.profileImageExpression)
-            table.column(Owner.nameExpression)
-            table.column(Owner.surnameExpression)
-            table.column(Owner.driverLicenseExpression)
-            table.column(Owner.passportExpression)
-            table.column(Owner.phoneExpression)
+        let createTable = table.create(ifNotExists: true) {table in
+            table.column(loginExpression, primaryKey: true)
+            table.column(passwordExpression)
+            table.column(profileImageExpression)
+            table.column(nameExpression)
+            table.column(surnameExpression)
+            table.column(driverLicenseExpression)
+            table.column(passportExpression)
+            table.column(phoneExpression)
         }
         return createTable
     }
     
     //INSERT INTO Owner (login,password....) VALUES (.......)
     class func insert(profileImage: Blob, name:String,surname: String, driverLicense: Int, passport: String, phone: String, login: String, password: String) -> Insert{
-        let insert = self.table.insert(Owner.loginExpression <- login,
-                               Owner.passwordExpression <- password,
-                               Owner.profileImageExpression <- profileImage,
-                               Owner.nameExpression <- name,
-                               Owner.surnameExpression <- surname,
-                               Owner.driverLicenseExpression <- driverLicense,
-                               Owner.passportExpression <- passport,
-                               Owner.phoneExpression <- phone)
+        let insert = table.insert(Owner.loginExpression <- login,
+                               passwordExpression <- password,
+                               profileImageExpression <- profileImage,
+                               nameExpression <- name,
+                               surnameExpression <- surname,
+                               driverLicenseExpression <- driverLicense,
+                               passportExpression <- passport,
+                               phoneExpression <- phone)
         return insert
     }
     
@@ -78,6 +77,7 @@ class Owner{
                 if owner[loginExpression] == login && owner[passwordExpression] == password{
                     return true
                 }
+                
             }
             
         } catch {
@@ -85,6 +85,25 @@ class Owner{
         }
         return false
     }
+    
+    //SELECT * FROM Owner WHERE login == ownerLogin LIMIT 1
+    class func selectAllFrom(login: String) -> Owner?{
+        do{
+            let request = table.where(login == loginExpression).limit(1)
+            
+            if let ownerRow = try DataBase.shared.connection.pluck(request){
+                
+                let owner = Owner(profileImage: ownerRow[profileImageExpression], name: ownerRow[nameExpression], surname: ownerRow[surnameExpression], driverLicense: ownerRow[driverLicenseExpression], passport: ownerRow[passportExpression], phone: ownerRow[phoneExpression], login: ownerRow[loginExpression], password: ownerRow[passwordExpression])
+                return owner
+            }
+            
+        } catch{
+            print("Throw error when select all information for owner login: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
+
 }
 
 

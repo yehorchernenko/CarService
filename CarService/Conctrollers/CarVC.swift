@@ -56,7 +56,7 @@ class CarVC: UIViewController {
             print("Can't add new values to 'Car' table error: \(error.localizedDescription)")
         }
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
 }

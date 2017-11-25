@@ -188,11 +188,7 @@
                         <viewLayoutGuide key="safeArea" id="k66-Lb-iqe"/>
                     </view>
                     <navigationItem key="navigationItem" id="0Dt-aJ-Wcp">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3fI-Tu-P88">
-                            <connections>
-                                <segue destination="IDf-nR-gTr" kind="unwind" unwindAction="unwindToLoginVCWithSegue:" id="ZXu-5S-dWI"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3fI-Tu-P88"/>
                     </navigationItem>
                     <connections>
                         <outlet property="isAdminSwitch" destination="bah-kM-27t" id="zO6-cJ-hSI"/>
@@ -208,7 +204,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LuC-b4-Qx6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="IDf-nR-gTr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1848.8" y="-349.47526236881561"/>
         </scene>
@@ -296,11 +291,7 @@
                         <viewLayoutGuide key="safeArea" id="4gh-BZ-RpX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="Yw3-Qk-kK7">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XN7-P0-Na3">
-                            <connections>
-                                <segue destination="BGJ-qF-WbZ" kind="unwind" unwindAction="unwindToLoginVCWithSegue:" id="0fg-Tw-PuF"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XN7-P0-Na3"/>
                     </navigationItem>
                     <connections>
                         <outlet property="continueButtonBottomConstraint" destination="MEd-dp-BoW" id="OKm-Vn-enc"/>
@@ -315,7 +306,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aR3-5Q-fK4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="BGJ-qF-WbZ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1849" y="354"/>
         </scene>
@@ -421,11 +411,7 @@
                         <viewLayoutGuide key="safeArea" id="kUf-oy-ibF"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="e45-aZ-Fua">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="3gD-UZ-7e4">
-                            <connections>
-                                <segue destination="q7S-24-4mW" kind="unwind" unwindAction="unwindToLoginVCWithSegue:" id="h5A-Oo-GOf"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="3gD-UZ-7e4"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="5sG-ng-oeV">
                             <connections>
                                 <action selector="editButtonPressed:" destination="pbi-fM-nQH" id="qVY-1j-8ry"/>
@@ -446,7 +432,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuZ-fY-P8J" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="q7S-24-4mW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="125.59999999999999" y="1763.568215892054"/>
         </scene>
@@ -516,11 +501,9 @@
                         <outlet property="modelTextField" destination="eZ4-Qh-0US" id="c8b-TV-i0E"/>
                         <outlet property="ownerTextField" destination="SQ4-qa-a5Q" id="H8p-bu-SGz"/>
                         <outlet property="serialNumberTextField" destination="tCg-9A-7nI" id="eiC-4n-WXB"/>
-                        <segue destination="EhW-fQ-3wv" kind="unwind" unwindAction="unwindToProfileWithSegue:" id="2VN-ns-lK0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7nG-3A-GJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="EhW-fQ-3wv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1020" y="1764.4677661169417"/>
         </scene>

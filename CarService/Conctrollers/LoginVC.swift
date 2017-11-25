@@ -18,7 +18,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
 
     @IBOutlet weak var signUpButton: UIButton!
-    @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {}
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
