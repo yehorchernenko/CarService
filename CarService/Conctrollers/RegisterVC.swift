@@ -43,18 +43,15 @@ class RegisterVC: UIViewController {
         
         let newOwner = Owner(profileImage: imageData, name: name, surname: surname, driverLicense: license, passport: passport, phone: phone, login: login, password: password)
 
-        let insert = Owner.insert(profileImage: newOwner.profileImage, name: newOwner.name, surname: newOwner.surname, driverLicense: newOwner.driverLicense, passport: newOwner.passport, phone: newOwner.phone, login: newOwner.login, password: newOwner.password)
+        Owner.insert(newOwner)
         
-        do{
-            try DataBase.shared.connection.run(insert)
-            print("New data were inserted")
-            
-            dismiss(animated: true, completion: nil)
-        } catch {
-            print("DataBase inserting error: \(error.localizedDescription)")
-        }
-
+        dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     //MARK: Properties
     let picker = UIImagePickerController()
@@ -64,12 +61,8 @@ class RegisterVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterVC.keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(RegisterVC.keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
-        do{
-            try DataBase.shared.connection.run(Owner.createTable())
-        } catch {
-            print("Can't create Owner table")
-        }
-        //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+        Owner.createTable()
+
         setGesture()
         picker.delegate = self
     }

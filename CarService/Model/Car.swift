@@ -37,7 +37,7 @@ class Car{
     
     
     //CREATE TABLE Car IF NOT EXISTS (serialNumber NOT NULL PRIMARY KEY VARCHAR(255), FOREIGN KEY(owner) REFERENCES Owner()
-    class func createTable() -> String{
+    class func createTable(){
         let createTable = table.create(ifNotExists: true) { (table) in
             table.column(serialNumberExpression, primaryKey: true)
             table.column(ownerExpression)
@@ -48,18 +48,28 @@ class Car{
             
             table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression)
         }
-        return createTable
+        do{
+            try DataBase.shared.connection.run(createTable)
+        } catch {
+            print("Can't create Car table")
+        }
+        
     }
     
     //INSERT INTO Car (owner,brand.....) VALUES (......)
-    class func insert(owner: String, brand: String, model: String,serialNumber: Int, image: Blob, color: String) -> Insert{
-        let insert = self.table.insert(serialNumberExpression <- serialNumber,
-                                       ownerExpression <- owner,
-                                       brandExpression <- brand,
-                                       modelExpression <- model,
-                                       imageExpression <- image,
-                                       colorExpression <- color)
-        return insert
+    class func insert(_ car: Car){
+        let insert = table.insert(serialNumberExpression <- car.serialNumber,
+                                       ownerExpression <- car.owner,
+                                       brandExpression <- car.brand,
+                                       modelExpression <- car.model,
+                                       imageExpression <- car.image,
+                                       colorExpression <- car.color)
+        do{
+            try DataBase.shared.connection.run(insert)
+        } catch{
+            print("Can't add new values to 'Car' table error: \(error.localizedDescription)")
+        }
+        
     }
     
     

@@ -71,7 +71,14 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+       print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loginTextField.text = ""
+        passwordTextField.text = ""
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

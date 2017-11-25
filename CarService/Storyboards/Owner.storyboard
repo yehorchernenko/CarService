@@ -95,7 +95,11 @@
                         <viewLayoutGuide key="safeArea" id="Jys-lP-P1X"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="LNc-7X-w5s">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="0vO-gn-CIn"/>
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="0vO-gn-CIn">
+                            <connections>
+                                <action selector="logOutButtonPressed:" destination="U8l-07-VZe" id="yyg-Ks-OxH"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="CLD-H1-LbV">
                             <connections>
                                 <action selector="editButtonPressed:" destination="U8l-07-VZe" id="Jvm-7b-bty"/>

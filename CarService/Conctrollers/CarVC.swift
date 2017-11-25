@@ -28,11 +28,7 @@ class CarVC: UIViewController {
             ownerTextField.text = ownerLogin
         }
         
-        do{
-            try DataBase.shared.connection.run(Car.createTable())
-        } catch {
-            print("Can't create Car table")
-        }
+        Car.createTable()
     }
 
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -48,13 +44,10 @@ class CarVC: UIViewController {
             return
         }
         
-        let carInsert = Car.insert(owner: ownerLogin, brand: brand, model: model, serialNumber: serialNumber, image: image, color: color)
+        let car = Car(owner: ownerLogin, brand: brand, model: model, serialNumber: serialNumber, image: image, color: color)
         
-        do{
-            try DataBase.shared.connection.run(carInsert)
-        } catch{
-            print("Can't add new values to 'Car' table error: \(error.localizedDescription)")
-        }
+        Car.insert(car)
+        
         
         navigationController?.popViewController(animated: true)
     }

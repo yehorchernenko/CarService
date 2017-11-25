@@ -42,7 +42,7 @@ class Owner{
     static let passwordExpression = Expression<String>("password")
     
     //CREATE TABLE Owner IF NOT EXISTS(login NOT NULL PRIMARY KEY VARCHAR(255), password....
-    class func createTable() -> String{
+    class func createTable(){
         let createTable = table.create(ifNotExists: true) {table in
             table.column(loginExpression, primaryKey: true)
             table.column(passwordExpression)
@@ -53,20 +53,31 @@ class Owner{
             table.column(passportExpression)
             table.column(phoneExpression)
         }
-        return createTable
-    }
+        
+        do{
+            try DataBase.shared.connection.run(createTable)
+        } catch {
+            print("Can't create Owner table")
+        }    }
     
     //INSERT INTO Owner (login,password....) VALUES (.......)
-    class func insert(profileImage: Blob, name:String,surname: String, driverLicense: Int, passport: String, phone: String, login: String, password: String) -> Insert{
-        let insert = table.insert(Owner.loginExpression <- login,
-                               passwordExpression <- password,
-                               profileImageExpression <- profileImage,
-                               nameExpression <- name,
-                               surnameExpression <- surname,
-                               driverLicenseExpression <- driverLicense,
-                               passportExpression <- passport,
-                               phoneExpression <- phone)
-        return insert
+    class func insert(_ owner: Owner){
+        let insert = table.insert(Owner.loginExpression <- owner.login,
+                               passwordExpression <- owner.password,
+                               profileImageExpression <- owner.profileImage,
+                               nameExpression <- owner.name,
+                               surnameExpression <- owner.surname,
+                               driverLicenseExpression <- owner.driverLicense,
+                               passportExpression <- owner.passport,
+                               phoneExpression <- owner.phone)
+
+        do{
+            try DataBase.shared.connection.run(insert)
+            print("New data were inserted")
+            
+        } catch {
+            print("DataBase inserting error: \(error.localizedDescription)")
+        }
     }
     
     //SELECT login,password FROM Owner;

@@ -126,18 +126,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dO9-oD-F6y">
-                                <rect key="frame" x="16" y="318" width="130" height="30"/>
+                                <rect key="frame" x="16" y="363" width="130" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="coR-5o-Hll">
-                                <rect key="frame" x="162" y="318" width="196" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vvj-ih-Fdn">
                                 <rect key="frame" x="16" y="262" width="130" height="30"/>
@@ -146,7 +139,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bah-kM-27t">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bah-kM-27t">
                                 <rect key="frame" x="301" y="262" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </switch>
@@ -178,6 +171,20 @@
                                     <action selector="continueButtonPressed:" destination="KCU-9N-Vr6" eventType="touchUpInside" id="w2H-7l-xPq"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Svl-BC-xPw">
+                                <rect key="frame" x="16" y="308" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="coR-5o-Hll">
+                                <rect key="frame" x="163" y="363" width="196" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -188,9 +195,14 @@
                         <viewLayoutGuide key="safeArea" id="k66-Lb-iqe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register as admin" id="0Dt-aJ-Wcp">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3fI-Tu-P88"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3fI-Tu-P88">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="KCU-9N-Vr6" id="66T-P9-gGT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="adressTextField" destination="Svl-BC-xPw" id="pjG-sI-1ei"/>
                         <outlet property="isAdminSwitch" destination="bah-kM-27t" id="zO6-cJ-hSI"/>
                         <outlet property="licenseTextField" destination="VIh-z4-mXf" id="Bjw-g7-4xc"/>
                         <outlet property="loginTextField" destination="dO9-oD-F6y" id="Wx5-mY-qnv"/>
@@ -291,7 +303,11 @@
                         <viewLayoutGuide key="safeArea" id="4gh-BZ-RpX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="Yw3-Qk-kK7">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XN7-P0-Na3"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="XN7-P0-Na3">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="Ptu-St-v1V" id="fUG-Tb-E8a"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="continueButtonBottomConstraint" destination="MEd-dp-BoW" id="OKm-Vn-enc"/>
@@ -320,7 +336,6 @@
         <!--Navigation Controller-->
         <scene sceneID="p94-Oo-7wC">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GPw-46-WpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d1e-Ji-BNe" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Vr-3P-4mG">
@@ -332,6 +347,7 @@
                         <segue destination="Ptu-St-v1V" kind="relationship" relationship="rootViewController" id="aer-aN-XQx"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GPw-46-WpT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="354"/>
         </scene>

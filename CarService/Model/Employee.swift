@@ -68,4 +68,27 @@ class Employee{
         }
     }
     
+    class func insert(_ employee: Employee){
+        let insert = table.insert(
+                loginExpression <- employee.login,
+                passwordEpression <- employee.password,
+                imageExpression <- employee.image,
+                nameExpression <- employee.name,
+                surnameExpression <- employee.surname,
+                positionExpression <- employee.position,
+                adressEpxression <- employee.adress,
+                phoneExpression <- employee.phone,
+                isAdminExpression <- employee.isAdmin
+        )
+        print(insert)
+        
+        do{
+            try DataBase.shared.connection.run(insert)
+            print(">>New data were inserted")
+            
+        } catch {
+            print(">>DataBase inserting error: \(error.localizedDescription)")
+        }
+    }
+    
 }

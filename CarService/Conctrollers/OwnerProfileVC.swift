@@ -35,6 +35,10 @@ class OwnerProfileVC: UIViewController {
     
     @IBAction func addCarButtonPressed(_ sender: UIButton) {}
         
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
