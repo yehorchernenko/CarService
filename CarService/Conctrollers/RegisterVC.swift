@@ -24,15 +24,20 @@ class RegisterVC: UIViewController {
     
     @IBAction func continueButtonAction(_ sender: UIButton) {
         guard let imageData = profileImage.image?.datatypeValue,
-            let name = nameLbl.text,
-            let surname = surnameLbl.text,
+            let name = nameLbl.text, !name.isEmpty,
+            let surname = surnameLbl.text, !surname.isEmpty,
             let license = Int(driverLicenceLbl.text!),
-            let passport = passportLbl.text,
-            let phone = phoneLbl.text,
-            let login = loginLbl.text,
-            let password = passwordLbl.text
+            let passport = passportLbl.text, !passport.isEmpty,
+            let phone = phoneLbl.text, !phone.isEmpty,
+            let login = loginLbl.text, !login.isEmpty,
+            let password = passwordLbl.text, !password.isEmpty
         else {
             somethingGoWrongAlert(message: "Please fill all fields")
+            return
+        }
+        
+        if password.characters.count < 6{
+            somethingGoWrongAlert(message: "Password have to be at least 6 char.")
             return
         }
         

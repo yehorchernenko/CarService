@@ -70,7 +70,21 @@ class Owner{
         return insert
     }
     
-
+    //SELECT login,password FROM Owner;
+    class func login(_ login: String, password: String) -> Bool{
+        do{
+            for owner in try DataBase.shared.connection.prepare(table.select(loginExpression,passwordExpression)){
+                
+                if owner[loginExpression] == login && owner[passwordExpression] == password{
+                    return true
+                }
+            }
+            
+        } catch {
+            print("Throw error when login owner: \(error.localizedDescription)")
+        }
+        return false
+    }
 }
 
 

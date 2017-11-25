@@ -8,4 +8,9 @@
 
 import Foundation
 
+//car vc
 let carCellIdentifier = "CarCellIdentfier"
+
+//login vc
+let signUpAsUserSegue = "siginUpAsUser"
+let signUpAsEmployerSegue = "signUpAsOwner"

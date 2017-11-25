@@ -12,6 +12,7 @@
 		742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDAE1FC0A1B700142F30 /* Constants.swift */; };
 		7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431605C1FB88FE600B9ABFE /* CarCell.swift */; };
 		7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7431605D1FB88FE600B9ABFE /* CarCell.xib */; };
+		7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */; };
 		74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */; };
 		74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A868D31F9BABB100DD0A77 /* AppDelegate.swift */; };
 		74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A868D71F9BABB100DD0A77 /* Main.storyboard */; };
@@ -257,6 +258,7 @@
 		742CFDAE1FC0A1B700142F30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7431605C1FB88FE600B9ABFE /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		7431605D1FB88FE600B9ABFE /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
+		7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminRegisterVC.swift; sourceTree = "<group>"; };
 		74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + SomethongGoWrongAlert.swift"; sourceTree = "<group>"; };
 		74A868D01F9BABB100DD0A77 /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A868D31F9BABB100DD0A77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				74FAF46A1FAF359800BFF755 /* LoginVC.swift */,
 				74FAF46C1FAF3C9C00BFF755 /* OwnerProfileVC.swift */,
 				742CFDAB1FC099AC00142F30 /* CarVC.swift */,
+				7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */,
 			);
 			path = Conctrollers;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				74A869141F9BB73100DD0A77 /* Service.swift in Sources */,
 				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
 				7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */,
+				7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */,
 				742CFDAC1FC099AC00142F30 /* CarVC.swift in Sources */,
 				74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */,
 				74FAF46B1FAF359800BFF755 /* LoginVC.swift in Sources */,

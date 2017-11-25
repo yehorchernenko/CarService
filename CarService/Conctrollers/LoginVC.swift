@@ -16,31 +16,58 @@ class LoginVC: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
-    
+
+    @IBOutlet weak var signUpButton: UIButton!
     @IBAction func unwindToLoginVC(segue: UIStoryboardSegue) {}
+    
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            signUpButton.setTitle("Sign up as user", for: .normal)
+        case 1:
+            signUpButton.setTitle("Sign up as employer", for: .normal)
+        default:
+            signUpButton.setTitle("Sign up", for: .normal)
+        }
+    }
+    
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        guard let login = loginTextField.text, let password = passwordTextField.text else {return}
+        guard let login = loginTextField.text, !login.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty
+            else {
+                somethingGoWrongAlert(message: "Fill all gaps.")
+                return
+        }
         
         switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            do{
-                //SELECT login,password FROM Owner;
-                for owner in try DataBase.shared.connection.prepare(Owner.table.select(Owner.loginExpression,Owner.passwordExpression)){
-                    
-                    if owner[Owner.loginExpression] == login && owner[Owner.passwordExpression] == password{
-                        performSegue(withIdentifier: "ownerProfileSegue", sender: nil)
-                    }
-                }
-            }catch{
-                print("Throw error when login owner: \(error.localizedDescription)")
+        case 0: // user
+            
+            //SELECT login,password FROM Owner;
+            if Owner.login(login, password: password){
+                performSegue(withIdentifier: "ownerProfileSegue", sender: nil)
+            } else {
+                somethingGoWrongAlert(message: "Incorect password or login")
             }
-        case 1:
+            
+        case 1: //admin
             print("TODO")
         default:
             return
         }
     }
+    
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            performSegue(withIdentifier: signUpAsUserSegue, sender: nil)
+        case 1:
+            performSegue(withIdentifier: signUpAsEmployerSegue, sender: nil)
+        default:
+            somethingGoWrongAlert(message: "Can't performSegue")
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
