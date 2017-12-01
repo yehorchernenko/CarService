@@ -36,7 +36,7 @@ class RegisterVC: UIViewController {
             return
         }
         
-        if password.characters.count < 6{
+        if password.count < 6{
             somethingGoWrongAlert(message: "Password have to be at least 6 char.")
             return
         }

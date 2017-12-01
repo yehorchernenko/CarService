@@ -15,7 +15,6 @@ class AdminRegisterVC: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var licenseTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     @IBOutlet weak var passportTestField: UITextField!
     @IBOutlet weak var positionTextField: UITextField!
@@ -28,7 +27,6 @@ class AdminRegisterVC: UIViewController {
         guard let image = profileImageView.image?.datatypeValue,
             let surname = surnameTextField.text, !surname.isEmpty,
             let name = nameTextField.text, !name.isEmpty,
-            let license = licenseTextField.text, !license.isEmpty,
             let phone = phoneTextField.text, !phone.isEmpty,
             let passport = passportTestField.text, !passport.isEmpty,
             let position = positionTextField.text, !position.isEmpty,
@@ -40,12 +38,12 @@ class AdminRegisterVC: UIViewController {
                 return
         }
         
-        if password.characters.count < 6{
+        if password.count < 6{
             somethingGoWrongAlert(message: "Password have to be at least 6 char.")
             return
         }
         
-        let employee = Employee(image: image, name: name, surname: surname, position: position, adress: adress, phone: phone, isAdmin: isAdminSwitch.isOn, login: login, password: password)
+        let employee = Employee(image: image, name: name, surname: surname, position: position, adress: adress, phone: phone, passport: passport, isAdmin: isAdminSwitch.isOn, login: login, password: password)
         
         Employee.insert(employee)
         

@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7418E62B1FCAA0000052864A /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7418E62A1FCAA0000052864A /* Employee.storyboard */; };
 		742CFDAA1FC08D1F00142F30 /* DataBaseConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDA91FC08D1F00142F30 /* DataBaseConnection.swift */; };
 		742CFDAC1FC099AC00142F30 /* CarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDAB1FC099AC00142F30 /* CarVC.swift */; };
 		742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742CFDAE1FC0A1B700142F30 /* Constants.swift */; };
 		7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7431605C1FB88FE600B9ABFE /* CarCell.swift */; };
 		7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7431605D1FB88FE600B9ABFE /* CarCell.xib */; };
+		743DCE0C1FCC89C700972141 /* AdminVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743DCE0B1FCC89C700972141 /* AdminVC.swift */; };
+		747A88411FCC8A6A00491AD7 /* EmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */; };
 		7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */; };
 		7486EC541FC9AD6C00BA8BBF /* Owner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7486EC531FC9AD6C00BA8BBF /* Owner.storyboard */; };
 		74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */; };
@@ -296,11 +299,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7418E62A1FCAA0000052864A /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
 		742CFDA91FC08D1F00142F30 /* DataBaseConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseConnection.swift; sourceTree = "<group>"; };
 		742CFDAB1FC099AC00142F30 /* CarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarVC.swift; sourceTree = "<group>"; };
 		742CFDAE1FC0A1B700142F30 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7431605C1FB88FE600B9ABFE /* CarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCell.swift; sourceTree = "<group>"; };
 		7431605D1FB88FE600B9ABFE /* CarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CarCell.xib; sourceTree = "<group>"; };
+		743DCE0B1FCC89C700972141 /* AdminVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminVC.swift; sourceTree = "<group>"; };
+		747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeVC.swift; sourceTree = "<group>"; };
 		7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminRegisterVC.swift; sourceTree = "<group>"; };
 		7486EC531FC9AD6C00BA8BBF /* Owner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Owner.storyboard; sourceTree = "<group>"; };
 		74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + SomethongGoWrongAlert.swift"; sourceTree = "<group>"; };
@@ -353,6 +359,7 @@
 				74A868D71F9BABB100DD0A77 /* Main.storyboard */,
 				74A868DC1F9BABB100DD0A77 /* LaunchScreen.storyboard */,
 				7486EC531FC9AD6C00BA8BBF /* Owner.storyboard */,
+				7418E62A1FCAA0000052864A /* Employee.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -420,6 +427,8 @@
 				74FAF46C1FAF3C9C00BFF755 /* OwnerProfileVC.swift */,
 				742CFDAB1FC099AC00142F30 /* CarVC.swift */,
 				7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */,
+				743DCE0B1FCC89C700972141 /* AdminVC.swift */,
+				747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */,
 			);
 			path = Conctrollers;
 			sourceTree = "<group>";
@@ -855,6 +864,7 @@
 			files = (
 				74A868DE1F9BABB100DD0A77 /* LaunchScreen.storyboard in Resources */,
 				74A868DB1F9BABB100DD0A77 /* Assets.xcassets in Resources */,
+				7418E62B1FCAA0000052864A /* Employee.storyboard in Resources */,
 				7431605F1FB88FE600B9ABFE /* CarCell.xib in Resources */,
 				74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */,
 				7486EC541FC9AD6C00BA8BBF /* Owner.storyboard in Resources */,
@@ -876,6 +886,7 @@
 				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
 				7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */,
 				7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */,
+				747A88411FCC8A6A00491AD7 /* EmployeeVC.swift in Sources */,
 				742CFDAC1FC099AC00142F30 /* CarVC.swift in Sources */,
 				74E20EE71F9CAA7A0081E17B /* UIImage + Blob.swift in Sources */,
 				74FAF46B1FAF359800BFF755 /* LoginVC.swift in Sources */,
@@ -883,6 +894,7 @@
 				74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */,
 				742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */,
 				74A869101F9BB6F800DD0A77 /* Car.swift in Sources */,
+				743DCE0C1FCC89C700972141 /* AdminVC.swift in Sources */,
 				74A869161F9BB74C00DD0A77 /* ServiceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
-
+    
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
@@ -30,7 +30,7 @@ class LoginVC: UIViewController {
         }
     }
     
-
+    
     @IBAction func loginButtonPressed(_ sender: UIButton) {
         guard let login = loginTextField.text, !login.isEmpty,
             let password = passwordTextField.text, !password.isEmpty
@@ -50,7 +50,32 @@ class LoginVC: UIViewController {
             }
             
         case 1: //admin
-            print("TODO")
+    
+            //TODO: - Extract method this scope
+            let sb = UIStoryboard(name: "Employee", bundle: nil)
+            
+            guard let status = Employee.login(login, password: password)
+                else{
+                    somethingGoWrongAlert(message: "Incorect password or login")
+                    return
+            }
+            
+            if status{
+                let navVC = sb.instantiateViewController(withIdentifier: "adminVCidentifier")
+                if let adminVC = navVC.childViewControllers.first as? AdminVC{
+                    adminVC.login = login
+                    
+                    present(navVC, animated: true, completion: nil)
+                }
+            } else {
+                let navVC = sb.instantiateViewController(withIdentifier: "employeeVCidentifier")
+                if let employeeVC = navVC.childViewControllers.first as? EmployeeVC{
+                    employeeVC.login = login
+                    
+                    present(navVC, animated: true, completion: nil)
+                }
+            }
+            
         default:
             return
         }
@@ -71,7 +96,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+       //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
     }
     
     override func viewWillAppear(_ animated: Bool) {
