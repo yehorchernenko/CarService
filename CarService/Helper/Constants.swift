@@ -14,3 +14,6 @@ let carCellIdentifier = "CarCellIdentfier"
 //login vc
 let signUpAsUserSegue = "siginUpAsUser"
 let signUpAsEmployerSegue = "signUpAsOwner"
+
+//serviceType vc
+let categoryCellIdentifier = "CategoryCellReuseIdentifier"

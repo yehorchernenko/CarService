@@ -58,11 +58,13 @@ class Owner{
             try DataBase.shared.connection.run(createTable)
         } catch {
             print("Can't create Owner table")
-        }    }
+        }
+        
+    }
     
     //INSERT INTO Owner (login,password....) VALUES (.......)
     class func insert(_ owner: Owner){
-        let insert = table.insert(Owner.loginExpression <- owner.login,
+        let insert = table.insert(loginExpression <- owner.login,
                                passwordExpression <- owner.password,
                                profileImageExpression <- owner.profileImage,
                                nameExpression <- owner.name,
