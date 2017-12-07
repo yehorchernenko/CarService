@@ -96,7 +96,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+       print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
     }
     
     override func viewWillAppear(_ animated: Bool) {

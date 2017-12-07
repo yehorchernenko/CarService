@@ -93,4 +93,24 @@ class Car{
         }
     }
     
+    class func selectAll(cars: @escaping ([Car]) -> Void){
+            var retrievedCars = [Car]()
+            
+            do{
+                for car in try DataBase.shared.connection.prepare(table){
+                    
+                    let ownerCar = Car(owner: car[ownerExpression], brand: car[brandExpression], model: car[modelExpression], serialNumber: car[serialNumberExpression], image: car[imageExpression], color: car[colorExpression])
+                    
+                    retrievedCars.append(ownerCar)
+                }
+            } catch {
+                print("Car retrieve error: \(error.localizedDescription)")
+            }
+            
+            DispatchQueue.main.async {
+                cars(retrievedCars)
+            }
+    
+    }
+    
 }
