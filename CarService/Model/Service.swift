@@ -41,9 +41,10 @@ class Service{
             table.column(employeeExpression)
             table.column(dateExpression)
             
-            table.foreignKey(carExpression, references: Car.table, Car.serialNumberExpression)
-            table.foreignKey(serviceTypeExpression, references: ServiceType.table, ServiceType.idExpression)
-            table.foreignKey(employeeExpression, references: Employee.table, Employee.loginExpression)
+            table.foreignKey(carExpression, references: Car.table, Car.serialNumberExpression, update: .cascade, delete: .cascade)
+            //table.foreignKey(carExpression, references: Car.table, Car.serialNumberExpression)
+            table.foreignKey(serviceTypeExpression, references: ServiceType.table, ServiceType.idExpression, update: .cascade, delete: .cascade)
+            table.foreignKey(employeeExpression, references: Employee.table, Employee.loginExpression, update: .cascade, delete: .cascade)
         }
    
         do{
@@ -54,9 +55,64 @@ class Service{
         
     }
     
-    //select Service.id, Car.brand, Car.model,ServiceType.name, Employee.name, Employee.surname from Car, Service, ServiceType,Employee Where (Car.serialNumber = Service.car) AND (ServiceType.id = Service.serviceType) AND (Employee.login = Service.employee);
-    class func selectAll(){
+    class func insert(_ service: Service){
+        let insert = table.insert(carExpression <- service.car,
+                                  serviceTypeExpression <- service.serviceType,
+                                  employeeExpression <- service.employee,
+                                  dateExpression <- service.date)
+      
+        do{
+            try DataBase.shared.connection.run(insert)
+        } catch{
+            print("Can't add new values to 'Car' table error: \(error.localizedDescription)")
+        }
         
     }
+    
+    //select Service.id, Car.brand, Car.model,ServiceType.name, Employee.name, Employee.surname from Car, Service, ServiceType,Employee Where (Car.serialNumber = Service.car) AND (ServiceType.id = Service.serviceType) AND (Employee.login = Service.employee);
+    class func selectAll(_ services: @escaping ([Service]) -> Void){
+        var retrivedServices = [Service]()
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(table){
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression])
+                
+                retrivedServices.append(service)
+            }
+            
+        } catch{
+            print("Can't retrieve all Service: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrivedServices)
+        }
+    }
+    
+    class func select(forUserLogin login: String, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+    
+        
+        //doen't work
+        let query = table.join(.leftOuter, Car.table, on: Car.ownerExpression == login).select(distinct: table[*])
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(query){
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression])
+                
+                print("** \(service.car)")
+                
+                retrievedServices.append(service)
+            }
+            
+        } catch{
+            print("Can't retrieve all Service: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+        
+    }
+    
     
 }

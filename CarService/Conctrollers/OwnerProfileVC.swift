@@ -39,6 +39,8 @@ class OwnerProfileVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func serviceButtonTaped(_ sender: Any) {}
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,13 +75,17 @@ class OwnerProfileVC: UIViewController {
         if let carVC = segue.destination as? CarVC{
             carVC.login = loginTextField.text
         }
+        
+        if let serviceVC = segue.destination as? ServiceVC{
+            serviceVC.ownerLogin = loginTextField.text
+        }
     }
     
     //MARK: Retrieve owner cars
     
     private func loadCars(){
         if let login = login{
-            Car.retrieveCarsForOwner(login: login) { [weak self]cars in
+            Car.retrieveCarsForOwner(login: login) { [weak self] cars in
                 self?.cars = cars
                 self?.tableView.reloadData()
             }

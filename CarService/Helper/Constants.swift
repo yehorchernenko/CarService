@@ -17,3 +17,6 @@ let signUpAsEmployerSegue = "signUpAsOwner"
 
 //serviceType vc
 let categoryCellIdentifier = "CategoryCellReuseIdentifier"
+
+//service vc
+let serviceCellIdentifier = "ServiceCellIReuseIdentifier"

@@ -83,6 +83,26 @@ class ServiceType{
         }
     }
     
+    //TODO: - Delete this shit
+    static func selectAll2() -> [ServiceType]{
+        var retrivedServices = [ServiceType]()
+        
+        do{
+            for service in try DataBase.shared.connection.prepare(table){
+                let serviceType = ServiceType(id: service[idExpression], name: service[nameExpression], description: service[descriptionExpression], price: service[priceExpression])
+                
+                retrivedServices.append(serviceType)
+            }
+            
+            
+        } catch {
+            print("Selection error in ServiceType \(error.localizedDescription)")
+        }
+        
+        return retrivedServices
+    }
+    
+    
     
     
 }

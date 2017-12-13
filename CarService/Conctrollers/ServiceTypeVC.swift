@@ -43,6 +43,12 @@ class ServiceTypeVC: UIViewController {
         let newServiceType = ServiceType(id: nil, name: category, description: description, price: price)
         
         ServiceType.insert(newServiceType)
+        
+        loadServiceTypes()
+        
+        categoryTextField.text = ""
+        descriptionTextField.text = ""
+        priceTextField.text = ""
     }
  
     private func loadServiceTypes(){
@@ -62,7 +68,7 @@ extension ServiceTypeVC: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCell
         let serviceType = serviceTypes[indexPath.row]
         
-        cell.idLabel.text = "ID: \(String(describing: serviceType.id))"
+        cell.idLabel.text = "ID: \(String(describing: serviceType.id!))"
         cell.nameLabel.text = serviceType.name
         cell.descriptionLabel.text = serviceType.description
         cell.priceLabel.text = "Price: \(serviceType.price) usd."

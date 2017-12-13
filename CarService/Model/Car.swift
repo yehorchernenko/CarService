@@ -46,7 +46,7 @@ class Car{
             table.column(imageExpression)
             table.column(colorExpression)
             
-            table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression)
+            table.foreignKey(Car.ownerExpression, references: Owner.table, Owner.loginExpression, update: .cascade, delete: .cascade)
         }
         do{
             try DataBase.shared.connection.run(createTable)
@@ -112,5 +112,6 @@ class Car{
             }
     
     }
+    
     
 }

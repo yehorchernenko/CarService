@@ -118,7 +118,7 @@ class Employee{
     }
     
     //SELECT * FROM Owner WHERE login == ownerLogin LIMIT 1
-    class func selectAllFrom(login: String) -> Employee?{
+    class func selectEmployeeFromLogin(login: String) -> Employee?{
         do{
             let request = table.where(login == loginExpression).limit(1)
             
@@ -134,5 +134,47 @@ class Employee{
         
         return nil
     }
+    
+    class func selectAll(employees: @escaping ([Employee]) -> Void){
+        
+        var retrivedEmployees = [Employee]()
+        
+        do{
+            for employeeRow in try DataBase.shared.connection.prepare(table){
+                                let employee = Employee(image: employeeRow[imageExpression], name: employeeRow[nameExpression], surname: employeeRow[surnameExpression], position: employeeRow[positionExpression], adress: employeeRow[adressEpxression], phone: employeeRow[phoneExpression], passport: employeeRow[passportExpression], isAdmin: employeeRow[isAdminExpression], login: employeeRow[loginExpression], password: employeeRow[passwordExpression])
+            
+                retrivedEmployees.append(employee)
+            }
+        } catch {
+            print(">> Throw error when select all employee information: \(error.localizedDescription)")
+
+        }
+        
+        DispatchQueue.main.async {
+            employees(retrivedEmployees)
+        }
+    }
+    
+    
+    //TODO: - Delete this sheet
+    
+    class func selectAll2() -> [Employee]{
+        
+        var retrivedEmployees = [Employee]()
+        
+        do{
+            for employeeRow in try DataBase.shared.connection.prepare(table){
+                let employee = Employee(image: employeeRow[imageExpression], name: employeeRow[nameExpression], surname: employeeRow[surnameExpression], position: employeeRow[positionExpression], adress: employeeRow[adressEpxression], phone: employeeRow[phoneExpression], passport: employeeRow[passportExpression], isAdmin: employeeRow[isAdminExpression], login: employeeRow[loginExpression], password: employeeRow[passwordExpression])
+                
+                retrivedEmployees.append(employee)
+            }
+        } catch {
+            print(">> Throw error when select all employee information: \(error.localizedDescription)")
+            
+        }
+        
+        return retrivedEmployees
+    }
+    
     
 }

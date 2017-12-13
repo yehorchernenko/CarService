@@ -38,7 +38,7 @@ class AdminVC: UIViewController {
         //SELECT * FROM Employee WHERE login == ownerLogin LIMIT 1
         
         if let employeeLogin = login,
-            let employee = Employee.selectAllFrom(login: employeeLogin){
+            let employee = Employee.selectEmployeeFromLogin(login: employeeLogin){
             
             profileImageView.image = UIImage.fromDatatypeValue(employee.image)
             surnameTextField.text = employee.surname

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YD4-qk-qLi">
-                                <rect key="frame" x="16" y="89" width="156" height="60"/>
+                                <rect key="frame" x="16" y="89" width="156" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Car:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-rE-eDX">
@@ -36,11 +36,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ss-KI-4XC">
-                                <rect key="frame" x="195" y="89" width="156" height="60"/>
+                                <rect key="frame" x="195" y="89" width="158" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nW-sG-Bb8">
-                                <rect key="frame" x="16" y="179" width="156" height="60"/>
+                                <rect key="frame" x="16" y="179" width="156" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Employee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTQ-aa-smX">
@@ -68,11 +68,18 @@
                                 <rect key="frame" x="172" y="247" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="9fd-Ii-yqf" eventType="touchUpInside" id="6Ya-8w-ZLc"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0SX-VJ-me0">
                                 <rect key="frame" x="0.0" y="285" width="375" height="382"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="9fd-Ii-yqf" id="Qfa-ds-YHH"/>
+                                    <outlet property="delegate" destination="9fd-Ii-yqf" id="Xyh-Va-3Hj"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,6 +90,7 @@
                         <outlet property="dateLabel" destination="mdS-gV-cX7" id="4Co-jH-RuB"/>
                         <outlet property="employeePicker" destination="5nW-sG-Bb8" id="OZp-JJ-XiD"/>
                         <outlet property="serviceTypePicker" destination="9Ss-KI-4XC" id="dns-kp-2Ag"/>
+                        <outlet property="tableView" destination="0SX-VJ-me0" id="jeX-w5-QAV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uyu-HX-2ex" userLabel="First Responder" sceneMemberID="firstResponder"/>

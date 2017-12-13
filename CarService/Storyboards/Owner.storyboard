@@ -95,7 +95,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Services"/>
                                 <connections>
-                                    <segue destination="H1N-3s-YA6" kind="show" id="KmI-WM-Bp0"/>
+                                    <action selector="serviceButtonTaped:" destination="U8l-07-VZe" eventType="touchUpInside" id="84f-wC-lS0"/>
+                                    <segue destination="H1N-3s-YA6" kind="show" id="72u-Lf-o7s"/>
                                 </connections>
                             </button>
                         </subviews>
