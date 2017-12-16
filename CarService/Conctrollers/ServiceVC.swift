@@ -17,7 +17,7 @@ class ServiceVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: Properties
-    var allCars = [Car]()
+    var allCars = [Car]() //get cars from owner vc
     var allEmployees = [Employee]()
     var allSeriveTypes = [ServiceType]()
     var services = [Service]()
@@ -27,7 +27,7 @@ class ServiceVC: UIViewController {
     var currentServiceType: ServiceType?
     
     //can be nil because we will reuse this VC for admin
-    var ownerLogin: String?
+    var isOwnerServices = true
     
     //MARK: - Lifecycle
     
@@ -41,7 +41,7 @@ class ServiceVC: UIViewController {
         serviceTypePicker.delegate = self
         employeePicker.delegate = self
                 
-        fillPickersDataSource(login: self.ownerLogin)
+        fillPickersDataSource()
         
         fillTableView()
         
@@ -54,8 +54,8 @@ class ServiceVC: UIViewController {
     
     private func fillTableView(){
         
-        if let login = ownerLogin{
-            Service.select(forUserLogin: login)  { [weak self] retrivedServices in
+        if isOwnerServices {
+            Service.select(forUserCars: allCars){ [weak self] retrivedServices in
                 self?.services = retrivedServices
                 self?.tableView.reloadData()
             }
@@ -79,14 +79,14 @@ class ServiceVC: UIViewController {
             let serviceTypeId = currentServiceType?.id
             else{ somethingGoWrongAlert(message: "Please select row in picker"); return}
         
-        let newService = Service(id: nil, car: carSerialNum, serviceType: serviceTypeId, employee: employeeLogin)
+        let newService = Service(id: nil, car: carSerialNum, serviceType: serviceTypeId, employee: employeeLogin, onProcess: true)
         
         Service.insert(newService)
         
         fillTableView()
     }
     
-    private func fillPickersDataSource(login: String?){
+    private func fillPickersDataSource(){
         Employee.selectAll { [weak self] employees in
             self?.allEmployees = employees
             self?.employeePicker.reloadAllComponents()
@@ -97,12 +97,7 @@ class ServiceVC: UIViewController {
             self?.serviceTypePicker.reloadAllComponents()
         }
         
-        if let ownerLogin = login{
-            Car.retrieveCarsForOwner(login: ownerLogin, cars: { [weak self] allUserCars in
-                self?.allCars = allUserCars
-                self?.carPicker.reloadAllComponents()
-            })
-        } else {
+        if !isOwnerServices{
             Car.selectAll(cars: { [weak self] cars in
                 self?.allCars = cars
                 self?.carPicker.reloadAllComponents()
@@ -184,15 +179,34 @@ extension ServiceVC: UITableViewDelegate, UITableViewDataSource{
         cell.idLabel.text = "ID: \(services[indexPath.row].id!)"
         cell.employeeLabel.text = "Performer: \(services[indexPath.row].employee)"
         cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].serviceType)"
+        cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         cell.incomeDateLabel.text = "Income date: \(incomeDate(services[indexPath.row].date))"
-        
+        cell.descriptionTextView.text = "Car serial number: \(services[indexPath.row].car)"
         return cell
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            guard let serviceId = services[indexPath.row].id else {return}
+            
+            Service.delete(byCarSerialNumber: nil, serviceType: nil, selfId: serviceId)
+            services.remove(at: indexPath.row)
+            tableView.reloadData()
+            
+        }
+    }
+    
+   //additonal mehod
     private func incomeDate(_ date: Date) -> String{
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "dd-MM-yyyy"
         
         return dateFormater.string(from: date)
     }
+    
 }

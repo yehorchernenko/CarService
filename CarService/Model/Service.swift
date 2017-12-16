@@ -15,13 +15,15 @@ class Service{
     var car: Int
     var serviceType: Int
     var employee: String
+    var onProcess: Bool
     var date: Date
     
-    init(id: Int?, car: Int, serviceType: Int, employee: String) {
+    init(id: Int?, car: Int, serviceType: Int, employee: String, onProcess: Bool) {
         self.id = id
         self.car = car
         self.serviceType = serviceType
         self.employee = employee
+        self.onProcess = onProcess
         self.date = Date()
     }
     
@@ -31,6 +33,7 @@ class Service{
     static let carExpression = Expression<Int>("car")
     static let serviceTypeExpression = Expression<Int>("serviceType")
     static let employeeExpression = Expression<String>("employee")
+    static let onProcessExpression = Expression<Bool>("onProcess")
     static let dateExpression = Expression<Date>("date")
     
     class func createTable(){
@@ -39,6 +42,7 @@ class Service{
             table.column(carExpression)
             table.column(serviceTypeExpression)
             table.column(employeeExpression)
+            table.column(onProcessExpression)
             table.column(dateExpression)
             
             table.foreignKey(carExpression, references: Car.table, Car.serialNumberExpression, update: .cascade, delete: .cascade)
@@ -59,6 +63,7 @@ class Service{
         let insert = table.insert(carExpression <- service.car,
                                   serviceTypeExpression <- service.serviceType,
                                   employeeExpression <- service.employee,
+                                  onProcessExpression <- service.onProcess,
                                   dateExpression <- service.date)
       
         do{
@@ -75,7 +80,7 @@ class Service{
         
         do{
             for serviceRow in try DataBase.shared.connection.prepare(table){
-                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression])
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
                 
                 retrivedServices.append(service)
             }
@@ -89,19 +94,25 @@ class Service{
         }
     }
     
-    class func select(forUserLogin login: String, services: @escaping ([Service]) -> Void){
+    class func select(forUserCars cars: [Car], services: @escaping ([Service]) -> Void){
         var retrievedServices = [Service]()
     
         
         //doen't work
-        let query = table.join(.leftOuter, Car.table, on: Car.ownerExpression == login).select(distinct: table[*])
+        
         do{
-            for serviceRow in try DataBase.shared.connection.prepare(query){
-                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression])
+            for serviceRow in try DataBase.shared.connection.prepare(table){
                 
-                print("** \(service.car)")
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
                 
-                retrievedServices.append(service)
+                let _ = cars.contains {  car in
+                    if car.serialNumber == service.car{
+                    retrievedServices.append(service)
+                    return true
+                    }
+                    return false
+                }
+                
             }
             
         } catch{
@@ -114,5 +125,26 @@ class Service{
         
     }
     
+    class func delete(byCarSerialNumber serialNumber: Int?,serviceType: Int?, selfId: Int?){
+        var alice: Table!
+        
+        if let number = serialNumber{
+            alice = table.where(carExpression == number)
+        }
+        
+        if let type = serviceType{
+            alice = table.where(serviceTypeExpression == type)
+        }
+        
+        if let id = selfId{
+            alice = table.where(idExpression == id)
+        }
+        
+        do{
+            try DataBase.shared.connection.run(alice.delete())
+        } catch {
+            print(">error when delete from service")
+        }
+    }
     
 }

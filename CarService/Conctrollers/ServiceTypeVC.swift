@@ -59,6 +59,9 @@ class ServiceTypeVC: UIViewController {
     }
 }
 
+
+//MARK: UITableViewDelegate, UITableViewDataSource
+
 extension ServiceTypeVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return serviceTypes.count
@@ -74,5 +77,17 @@ extension ServiceTypeVC: UITableViewDataSource, UITableViewDelegate{
         cell.priceLabel.text = "Price: \(serviceType.price) usd."
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard let typeId = serviceTypes[indexPath.row].id else {return}
+        
+        ServiceType.delete(byId: typeId)
+        serviceTypes.remove(at: indexPath.row)
+        tableView.reloadData()
     }
 }

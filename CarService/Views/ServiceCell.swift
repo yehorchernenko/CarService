@@ -14,6 +14,11 @@ class ServiceCell: UITableViewCell {
     @IBOutlet weak var employeeLabel: UILabel!
     @IBOutlet weak var serviceTypeNameLabel: UILabel!
     
+    @IBOutlet weak var onProccesSwitch: UISwitch!
     @IBOutlet weak var incomeDateLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    
+    @IBAction func onProcessSwitchValueChanged(_ sender: Any) {
+    }
 }

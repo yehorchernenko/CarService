@@ -77,7 +77,7 @@ class OwnerProfileVC: UIViewController {
         }
         
         if let serviceVC = segue.destination as? ServiceVC{
-            serviceVC.ownerLogin = loginTextField.text
+            serviceVC.allCars = cars
         }
     }
     
@@ -94,6 +94,8 @@ class OwnerProfileVC: UIViewController {
 
 }
 
+//MARK: - UITableVIewDelegate, UITableViewDataSource
+
 extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cars.count
@@ -108,4 +110,21 @@ extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
         cell.ownerLabel.text = cars[indexPath.row].owner
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete{
+            let car = cars[indexPath.row]
+            
+            Car.delete(bySerialNumber: car.serialNumber)
+            cars.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+
+    }
+    
 }

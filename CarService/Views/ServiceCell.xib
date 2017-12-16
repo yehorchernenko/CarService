@@ -40,12 +40,6 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y4D-36-gcH">
-                                <rect key="frame" x="-7" y="57" width="210" height="62"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Income date:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gv-zH-WVY">
                                 <rect key="frame" x="211" y="57" width="94" height="62"/>
                                 <constraints>
@@ -61,16 +55,43 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cNk-Ed-3PF">
+                                <rect key="frame" x="158" y="57" width="49" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On procces: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Cs-cF-ZLA">
+                                        <rect key="frame" x="0.0" y="0.0" width="49" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="7"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ly9-e2-8qG">
+                                        <rect key="frame" x="0.0" y="31" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onProcessSwitchValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="QrB-Lx-05b"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                            </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description: " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y4D-36-gcH">
+                                <rect key="frame" x="-7" y="57" width="161" height="62"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Oh8-jC-unR" firstAttribute="width" secondItem="Oa2-bM-Dll" secondAttribute="width" id="8ty-8a-IRO"/>
+                            <constraint firstItem="7gv-zH-WVY" firstAttribute="leading" secondItem="Oa2-bM-Dll" secondAttribute="leading" constant="211" id="Cii-JU-WL5"/>
                             <constraint firstItem="HUc-G8-gHc" firstAttribute="top" secondItem="Oa2-bM-Dll" secondAttribute="top" id="HFi-5m-iC9"/>
+                            <constraint firstItem="7gv-zH-WVY" firstAttribute="leading" secondItem="cNk-Ed-3PF" secondAttribute="trailing" constant="4" id="HU8-Bl-s5Y"/>
                             <constraint firstItem="Y4D-36-gcH" firstAttribute="leading" secondItem="Oa2-bM-Dll" secondAttribute="leading" constant="-7" id="IEe-sJ-9FE"/>
                             <constraint firstItem="Oh8-jC-unR" firstAttribute="centerY" secondItem="Oa2-bM-Dll" secondAttribute="centerY" multiplier="0.6" id="Jyr-LG-uJM"/>
                             <constraint firstAttribute="trailing" secondItem="7gv-zH-WVY" secondAttribute="trailing" constant="-6" id="Lp4-ZB-vzq"/>
                             <constraint firstItem="7gv-zH-WVY" firstAttribute="bottom" secondItem="Oa2-bM-Dll" secondAttribute="bottomMargin" id="PXp-AE-1Sm"/>
+                            <constraint firstItem="cNk-Ed-3PF" firstAttribute="leading" secondItem="Y4D-36-gcH" secondAttribute="trailing" constant="4" id="QJV-hD-aIP"/>
                             <constraint firstItem="HUc-G8-gHc" firstAttribute="width" secondItem="Oa2-bM-Dll" secondAttribute="width" multiplier="0.7" id="QO8-Pv-41m"/>
+                            <constraint firstItem="cNk-Ed-3PF" firstAttribute="top" secondItem="7gv-zH-WVY" secondAttribute="top" id="Rib-if-DOt"/>
                             <constraint firstItem="Swk-NK-uS5" firstAttribute="leading" secondItem="Oa2-bM-Dll" secondAttribute="leadingMargin" id="T2P-iE-6tU"/>
                             <constraint firstItem="Swk-NK-uS5" firstAttribute="top" secondItem="Oa2-bM-Dll" secondAttribute="top" id="U0z-5d-4Us"/>
                             <constraint firstItem="Oh8-jC-unR" firstAttribute="top" secondItem="Swk-NK-uS5" secondAttribute="bottom" constant="8" symbolic="YES" id="Xn3-jz-CjT"/>
@@ -78,7 +99,6 @@
                             <constraint firstItem="Y4D-36-gcH" firstAttribute="bottom" secondItem="7gv-zH-WVY" secondAttribute="bottom" id="aDM-RA-j77"/>
                             <constraint firstAttribute="trailing" secondItem="HUc-G8-gHc" secondAttribute="trailing" id="cFU-09-4xX"/>
                             <constraint firstItem="Y4D-36-gcH" firstAttribute="top" secondItem="Oh8-jC-unR" secondAttribute="bottom" constant="9" id="eRH-BR-9ww"/>
-                            <constraint firstItem="7gv-zH-WVY" firstAttribute="leading" secondItem="Y4D-36-gcH" secondAttribute="trailing" constant="8" symbolic="YES" id="fI4-gc-jOm"/>
                             <constraint firstItem="Y4D-36-gcH" firstAttribute="top" secondItem="7gv-zH-WVY" secondAttribute="top" id="zmu-K7-ak2"/>
                         </constraints>
                     </view>
@@ -96,6 +116,7 @@
                 <outlet property="employeeLabel" destination="HUc-G8-gHc" id="UMr-BT-nqg"/>
                 <outlet property="idLabel" destination="Swk-NK-uS5" id="HGC-gG-w5x"/>
                 <outlet property="incomeDateLabel" destination="7gv-zH-WVY" id="WrA-i5-qVY"/>
+                <outlet property="onProccesSwitch" destination="ly9-e2-8qG" id="xNh-x3-DWp"/>
                 <outlet property="serviceTypeNameLabel" destination="Oh8-jC-unR" id="Gyc-bd-34H"/>
             </connections>
             <point key="canvasLocation" x="39.5" y="106.5"/>

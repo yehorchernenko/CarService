@@ -32,7 +32,7 @@ class ServiceType{
     static let priceExpression = Expression<Double>("price")
     
     //CREATE TABLE ServiceType IF NOT EXISTS(id NOT NULL PRIMARY KEY INT AUTOINCREMENT, name ....
-    static func createTable(){
+    class func createTable(){
         let table = self.table.create(ifNotExists: true) {table in
             table.column(idExpression, primaryKey: .autoincrement)
             table.column(nameExpression)
@@ -48,7 +48,7 @@ class ServiceType{
     }
     
     //INSERT INTO ServiceType
-    static func insert(_ serviceType: ServiceType){
+    class func insert(_ serviceType: ServiceType){
         let insert = table.insert(nameExpression <- serviceType.name,
                                 descriptionExpression <- serviceType.description,
                                 priceExpression <- serviceType.price)
@@ -63,7 +63,7 @@ class ServiceType{
     }
     
     //SELECT * FROM ServiceType
-    static func selectAll(services: @escaping ([ServiceType]) -> Void){
+    class func selectAll(services: @escaping ([ServiceType]) -> Void){
         var retrivedServices = [ServiceType]()
     
         do{
@@ -83,24 +83,20 @@ class ServiceType{
         }
     }
     
-    //TODO: - Delete this shit
-    static func selectAll2() -> [ServiceType]{
-        var retrivedServices = [ServiceType]()
-        
+    
+    //DELTE
+    
+    class func delete(byId id: Int){
+        let alice = table.where(idExpression == id)
         do{
-            for service in try DataBase.shared.connection.prepare(table){
-                let serviceType = ServiceType(id: service[idExpression], name: service[nameExpression], description: service[descriptionExpression], price: service[priceExpression])
-                
-                retrivedServices.append(serviceType)
-            }
-            
-            
+            try DataBase.shared.connection.run(alice.delete())
+            Service.delete(byCarSerialNumber: nil, serviceType: id, selfId: nil)
         } catch {
-            print("Selection error in ServiceType \(error.localizedDescription)")
+            print(">error when deleting service type: \(error.localizedDescription)")
         }
         
-        return retrivedServices
     }
+    
     
     
     

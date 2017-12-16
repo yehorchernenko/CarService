@@ -114,4 +114,16 @@ class Car{
     }
     
     
+    class func delete(bySerialNumber serialNumber: Int){
+        let alice = table.where(serialNumberExpression == serialNumber)
+        do{
+            try DataBase.shared.connection.run(alice.delete())
+        } catch{
+            print(">error when delete car by serial: \(error.localizedDescription)")
+        }
+        
+        Service.delete(byCarSerialNumber: serialNumber, serviceType: nil, selfId: nil)
+    }
+    
+    
 }
