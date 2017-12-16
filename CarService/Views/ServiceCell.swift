@@ -19,6 +19,9 @@ class ServiceCell: UITableViewCell {
     @IBOutlet weak var descriptionTextView: UITextView!
     
     
-    @IBAction func onProcessSwitchValueChanged(_ sender: Any) {
+    @IBAction func onProccesSwitchValueChanged(_ sender: UISwitch) {
+        guard let idStr = idLabel.text, let id = Int(idStr) else {return}
+        Service.updateProcess(state: sender.isOn, byId: id)
     }
+    
 }

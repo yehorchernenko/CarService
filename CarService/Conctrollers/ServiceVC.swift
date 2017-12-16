@@ -176,12 +176,15 @@ extension ServiceVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: serviceCellIdentifier, for: indexPath) as! ServiceCell
         
-        cell.idLabel.text = "ID: \(services[indexPath.row].id!)"
+        
+        cell.idLabel.text = "\(services[indexPath.row].id!)"
         cell.employeeLabel.text = "Performer: \(services[indexPath.row].employee)"
         cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].serviceType)"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         cell.incomeDateLabel.text = "Income date: \(incomeDate(services[indexPath.row].date))"
         cell.descriptionTextView.text = "Car serial number: \(services[indexPath.row].car)"
+        cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
+        
         return cell
     }
     

@@ -125,6 +125,7 @@ class Service{
         
     }
     
+    //delete
     class func delete(byCarSerialNumber serialNumber: Int?,serviceType: Int?, selfId: Int?){
         var alice: Table!
         
@@ -144,6 +145,17 @@ class Service{
             try DataBase.shared.connection.run(alice.delete())
         } catch {
             print(">error when delete from service")
+        }
+    }
+    
+    //update
+    class func updateProcess(state: Bool,byId id: Int){
+        let alice = table.where(idExpression == id)
+        
+        do{
+            try DataBase.shared.connection.run(alice.update(onProcessExpression <- state))
+        } catch {
+            print(">error when updating process state in service \(error.localizedDescription)")
         }
     }
     
