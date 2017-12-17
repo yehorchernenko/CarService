@@ -79,7 +79,7 @@ class Service{
         var retrivedServices = [Service]()
         
         do{
-            for serviceRow in try DataBase.shared.connection.prepare(table){
+            for serviceRow in try DataBase.shared.connection.prepare(table.order(idExpression.asc)){
                 let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
                 
                 retrivedServices.append(service)
@@ -159,4 +159,131 @@ class Service{
         }
     }
     
+    //MARK: - Complex selection
+    
+    class func select(byId id: Int, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(idExpression == id).order(idExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
+    
+    class func select(bySerialNumber serialNumber: Int, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(carExpression == serialNumber).order(carExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
+    
+    class func select(byServiceTypeId serviceTypeId: Int, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(serviceTypeExpression == serviceTypeId).order(idExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
+    
+    class func select(byEmployeeLogin login: String, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(employeeExpression == login).order(employeeExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
+    
+    class func select(byProcessState state: Bool, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(onProcessExpression == state).order(idExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
+    
+    class func select(byDate date: Date, services: @escaping ([Service]) -> Void){
+        var retrievedServices = [Service]()
+        
+        let alice = table.where(dateExpression == date).order(idExpression.asc)
+        
+        do{
+            for serviceRow in try DataBase.shared.connection.prepare(alice){
+                
+                let service = Service(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression])
+                
+                retrievedServices.append(service)
+            }
+        } catch {
+            print(">error when retreiving Services for id, error: \(error.localizedDescription)")
+        }
+        
+        DispatchQueue.main.async {
+            services(retrievedServices)
+        }
+    }
 }

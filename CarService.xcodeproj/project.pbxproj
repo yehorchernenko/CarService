@@ -26,6 +26,7 @@
 		747C4C801FDD5A050084812F /* ServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 747C4C7E1FDD5A050084812F /* ServiceCell.xib */; };
 		7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */; };
 		7486EC541FC9AD6C00BA8BBF /* Owner.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7486EC531FC9AD6C00BA8BBF /* Owner.storyboard */; };
+		748EC9AE1FE6C1420076790B /* ServiceManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748EC9AD1FE6C1420076790B /* ServiceManagerVC.swift */; };
 		74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */; };
 		74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A868D31F9BABB100DD0A77 /* AppDelegate.swift */; };
 		74A868D91F9BABB100DD0A77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74A868D71F9BABB100DD0A77 /* Main.storyboard */; };
@@ -134,6 +135,7 @@
 		747C4C7E1FDD5A050084812F /* ServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceCell.xib; sourceTree = "<group>"; };
 		7486EC351FC9890B00BA8BBF /* AdminRegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminRegisterVC.swift; sourceTree = "<group>"; };
 		7486EC531FC9AD6C00BA8BBF /* Owner.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Owner.storyboard; sourceTree = "<group>"; };
+		748EC9AD1FE6C1420076790B /* ServiceManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManagerVC.swift; sourceTree = "<group>"; };
 		74A0CF541FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + SomethongGoWrongAlert.swift"; sourceTree = "<group>"; };
 		74A868D01F9BABB100DD0A77 /* CarService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74A868D31F9BABB100DD0A77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 				747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */,
 				74541BBC1FD53893008D6F0A /* ServiceTypeVC.swift */,
 				7435178A1FD6E2F5005A6644 /* ServiceVC.swift */,
+				748EC9AD1FE6C1420076790B /* ServiceManagerVC.swift */,
 			);
 			path = Conctrollers;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				74FAF46D1FAF3C9C00BFF755 /* OwnerProfileVC.swift in Sources */,
 				74A869141F9BB73100DD0A77 /* Service.swift in Sources */,
 				74A869181F9BB77D00DD0A77 /* Employee.swift in Sources */,
+				748EC9AE1FE6C1420076790B /* ServiceManagerVC.swift in Sources */,
 				7431605E1FB88FE600B9ABFE /* CarCell.swift in Sources */,
 				7486EC361FC9890B00BA8BBF /* AdminRegisterVC.swift in Sources */,
 				747A88411FCC8A6A00491AD7 /* EmployeeVC.swift in Sources */,
