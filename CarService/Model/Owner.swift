@@ -117,6 +117,24 @@ class Owner{
         return nil
     }
 
+    //UPDATE
+    
+    class func update(owner: Owner){
+        let alice = table.where(loginExpression == owner.login)
+        
+        do{
+            try DataBase.shared.connection.run(alice.update(passwordExpression <- owner.password,
+                                                            profileImageExpression <- owner.profileImage,
+                                                            nameExpression <- owner.name,
+                                                            surnameExpression <- owner.surname,
+                                                            driverLicenseExpression <- owner.driverLicense,
+                                                            passportExpression <- owner.passport,
+                                                            phoneExpression <- owner.phone))
+        } catch {
+            print(">error owner updating error")
+        }
+    }
+    
 }
 
 

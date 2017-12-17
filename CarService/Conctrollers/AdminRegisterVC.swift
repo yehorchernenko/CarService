@@ -23,6 +23,9 @@ class AdminRegisterVC: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let picker = UIImagePickerController()
+
+    
     @IBAction func continueButtonPressed(_ sender: Any) {
         guard let image = profileImageView.image?.datatypeValue,
             let surname = surnameTextField.text, !surname.isEmpty,
@@ -54,11 +57,41 @@ class AdminRegisterVC: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+    super.viewDidLoad()
         
+        picker.delegate = self
+        //setGesture() //какого то хера падает
         Employee.createTable()
     }
+    
+    private func setGesture(){
+        let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
+        profileImageView.addGestureRecognizer(imageViewGesture)
+    }
+    
+    @objc private func showImagePicker(recognizer: UIGestureRecognizer){
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
+    }
+
+}
 
 
+extension AdminRegisterVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        profileImageView.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

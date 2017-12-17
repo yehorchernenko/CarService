@@ -156,25 +156,25 @@ class Employee{
     }
     
     
-    //TODO: - Delete this sheet
+    //MARK: - Delete
     
-    class func selectAll2() -> [Employee]{
-        
-        var retrivedEmployees = [Employee]()
+    class func update(employee: Employee){
+        let alice = table.where(loginExpression == employee.login)
         
         do{
-            for employeeRow in try DataBase.shared.connection.prepare(table){
-                let employee = Employee(image: employeeRow[imageExpression], name: employeeRow[nameExpression], surname: employeeRow[surnameExpression], position: employeeRow[positionExpression], adress: employeeRow[adressEpxression], phone: employeeRow[phoneExpression], passport: employeeRow[passportExpression], isAdmin: employeeRow[isAdminExpression], login: employeeRow[loginExpression], password: employeeRow[passwordExpression])
-                
-                retrivedEmployees.append(employee)
-            }
+            try DataBase.shared.connection.run(alice.update(
+                                    passwordExpression <- employee.password,
+                                    imageExpression <- employee.image,
+                                    nameExpression <- employee.name,
+                                    surnameExpression <- employee.surname,
+                                    positionExpression <- employee.position,
+                                    adressEpxression <- employee.adress,
+                                    phoneExpression <- employee.phone,
+                                    passportExpression <- employee.passport
+                                    ))
         } catch {
-            print(">> Throw error when select all employee information: \(error.localizedDescription)")
-            
+            print(">error when update employee \(error.localizedDescription)")
         }
-        
-        return retrivedEmployees
     }
-    
     
 }

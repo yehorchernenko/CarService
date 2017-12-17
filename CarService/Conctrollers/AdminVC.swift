@@ -22,15 +22,71 @@ class AdminVC: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let picker = UIImagePickerController()
+    var isUpdate = false
     
     @IBAction func logOut(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet weak var editButtonPressed: UIBarButtonItem!
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        nameTextField.isEnabled = !nameTextField.isEnabled
+        surnameTextField.isEnabled = !surnameTextField.isEnabled
+        positionTextField.isEnabled = !positionTextField.isEnabled
+        phoneTextField.isEnabled = !phoneTextField.isEnabled
+        adressTextField.isEnabled = !adressTextField.isEnabled
+        passportTestField.isEnabled = !passportTestField.isEnabled
+        passwordTextField.isHidden = !passwordTextField.isHidden
+        
+        nameTextField.isUserInteractionEnabled = !nameTextField.isUserInteractionEnabled
+        surnameTextField.isUserInteractionEnabled = !surnameTextField.isUserInteractionEnabled
+        positionTextField.isUserInteractionEnabled = !positionTextField.isUserInteractionEnabled
+        phoneTextField.isUserInteractionEnabled = !phoneTextField.isUserInteractionEnabled
+        passportTestField.isUserInteractionEnabled = !passportTestField.isUserInteractionEnabled
+        passwordTextField.isUserInteractionEnabled = !passwordTextField.isUserInteractionEnabled
+        adressTextField.isUserInteractionEnabled = !adressTextField.isUserInteractionEnabled
+        profileImageView.isUserInteractionEnabled = !profileImageView.isUserInteractionEnabled
+        
+        if isUpdate{ //save
+            if let editedEmployee = checkGaps(){
+                Employee.update(employee: editedEmployee)
+            }
+        }
+        
+        isUpdate = !isUpdate
+        
+    }
+    
+    private func checkGaps() -> Employee?{
+        guard let image = profileImageView.image?.datatypeValue,
+            let surname = surnameTextField.text, !surname.isEmpty,
+            let name = nameTextField.text, !name.isEmpty,
+            let phone = phoneTextField.text, !phone.isEmpty,
+            let passport = passportTestField.text, !passport.isEmpty,
+            let position = positionTextField.text, !position.isEmpty,
+            let adress = adressTextField.text, !adress.isEmpty,
+            let login = loginTextField.text, !login.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty
+            else {
+                somethingGoWrongAlert(message: "Please fill all fields")
+                return nil
+        }
+        
+        if password.count < 6{
+            somethingGoWrongAlert(message: "Password have to be at least 6 char.")
+            return nil
+        }
+        
+        let employee = Employee(image: image, name: name, surname: surname, position: position, adress: adress, phone: phone, passport: passport, isAdmin: true, login: login, password: password)
+        
+        return employee
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        picker.delegate = self
+        setGesture()
         fillTextFields()
     }
 
@@ -53,5 +109,33 @@ class AdminVC: UIViewController {
             
         }
     }
+    
+    private func setGesture(){
+        let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
+        profileImageView.addGestureRecognizer(imageViewGesture)
+    }
+    
+    @objc private func showImagePicker(recognizer: UIGestureRecognizer){
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
+    }
 
 }
+
+extension AdminVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        profileImageView.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+

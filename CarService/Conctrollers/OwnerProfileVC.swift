@@ -15,10 +15,12 @@ class OwnerProfileVC: UIViewController {
     var login: String?
     let carCellNib = UINib(nibName: "CarCell", bundle: nil)
     var cars = [Car]()
+    var isUpdate = false
+    let picker = UIImagePickerController()
+
     //MARK: - Outlets
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var driverLicenseTextField: UITextField!
@@ -26,11 +28,58 @@ class OwnerProfileVC: UIViewController {
     @IBOutlet weak var passportTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var editButton: UIBarButtonItem!
+    
+    
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        nameTextField.isEnabled = !nameTextField.isEnabled
+        surnameTextField.isEnabled = !surnameTextField.isEnabled
+        driverLicenseTextField.isEnabled = !driverLicenseTextField.isEnabled
+        phoneTextField.isEnabled = !phoneTextField.isEnabled
+        passportTextField.isEnabled = !passportTextField.isEnabled
+        passwordTextField.isHidden = !passwordTextField.isHidden
         
+        nameTextField.isUserInteractionEnabled = !nameTextField.isUserInteractionEnabled
+        surnameTextField.isUserInteractionEnabled = !surnameTextField.isUserInteractionEnabled
+        driverLicenseTextField.isUserInteractionEnabled = !driverLicenseTextField.isUserInteractionEnabled
+        phoneTextField.isUserInteractionEnabled = !phoneTextField.isUserInteractionEnabled
+        passportTextField.isUserInteractionEnabled = !passportTextField.isUserInteractionEnabled
+        passwordTextField.isUserInteractionEnabled = !passwordTextField.isUserInteractionEnabled
+        profileImageView.isUserInteractionEnabled = !profileImageView.isUserInteractionEnabled
+        
+        if isUpdate{ //save
+            if let editedOwner = checkGaps(){
+                Owner.update(owner: editedOwner)
+            }
+        } 
+        
+        isUpdate = !isUpdate
+        
+    }
+    
+    private func checkGaps() -> Owner?{
+        guard let imageData = profileImageView.image?.datatypeValue,
+            let name = nameTextField.text, !name.isEmpty,
+            let surname = surnameTextField.text, !surname.isEmpty,
+            let license = Int(driverLicenseTextField.text!),
+            let passport = passportTextField.text, !passport.isEmpty,
+            let phone = phoneTextField.text, !phone.isEmpty,
+            let login = loginTextField.text, !login.isEmpty,
+            let password = passwordTextField.text, !password.isEmpty
+            else {
+                somethingGoWrongAlert(message: "Please fill all fields")
+                return nil
+        }
+        
+        if password.count < 6{
+            somethingGoWrongAlert(message: "Password have to be at least 6 char.")
+            return nil
+        }
+        
+        let owner = Owner(profileImage: imageData, name: name, surname: surname, driverLicense: license, passport: passport, phone: phone, login: login, password: password)
+        
+        return owner
     }
     
     @IBAction func addCarButtonPressed(_ sender: UIButton) {}
@@ -41,17 +90,35 @@ class OwnerProfileVC: UIViewController {
     
     @IBAction func serviceButtonTaped(_ sender: Any) {}
     
+    
+    //MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(carCellNib, forCellReuseIdentifier: carCellIdentifier)
         
+        picker.delegate = self
+        setGesture()
         fillTextFields()
         //print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadCars()
+    }
+    
+    private func setGesture(){
+        let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
+        profileImageView.addGestureRecognizer(imageViewGesture)
+    }
+    
+    @objc private func showImagePicker(recognizer: UIGestureRecognizer){
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
     }
     
     private func fillTextFields(){
@@ -127,4 +194,18 @@ extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
 
     }
     
+}
+
+extension OwnerProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        profileImageView.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }

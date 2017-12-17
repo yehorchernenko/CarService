@@ -21,6 +21,9 @@ class CarVC: UIViewController {
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var carImage: UIImageView!
     
+    let picker = UIImagePickerController()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +31,10 @@ class CarVC: UIViewController {
             ownerTextField.text = ownerLogin
         }
         
+        setGesture()
         Car.createTable()
+        
+        picker.delegate = self
     }
 
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -52,4 +58,30 @@ class CarVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    private func setGesture(){
+        let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
+        carImage.addGestureRecognizer(imageViewGesture)
+    }
+    
+    @objc private func showImagePicker(recognizer: UIGestureRecognizer){
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(picker, animated: true, completion: nil)
+    }
+    
+}
+
+extension CarVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage //2
+        carImage.image = chosenImage
+        dismiss(animated:true, completion: nil)
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
