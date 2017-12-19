@@ -100,6 +100,25 @@ class Owner{
     }
     
     //SELECT * FROM Owner WHERE login == ownerLogin LIMIT 1
+    class func selectAll(owners: @escaping([Owner]) -> Void){
+        var retrievedOwners = [Owner]()
+        
+        do{
+            for ownerRow in try DataBase.shared.connection.prepare(table){
+                
+                let owner = Owner(profileImage: ownerRow[profileImageExpression], name: ownerRow[nameExpression], surname: ownerRow[surnameExpression], driverLicense: ownerRow[driverLicenseExpression], passport: ownerRow[passportExpression], phone: ownerRow[phoneExpression], login: ownerRow[loginExpression], password: ownerRow[passwordExpression])
+                
+                retrievedOwners.append(owner)
+            }
+        } catch{
+            print("error at selectAll in Owner")
+        }
+        
+        DispatchQueue.main.async {
+            owners(retrievedOwners)
+        }
+    }
+    
     class func selectAllFrom(login: String) -> Owner?{
         do{
             let request = table.where(login == loginExpression).limit(1)

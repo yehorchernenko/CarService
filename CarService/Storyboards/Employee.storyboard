@@ -209,6 +209,7 @@
                         <outlet property="datePickerFro" destination="162-Rt-P1t" id="3TL-kv-nM9"/>
                         <outlet property="datePickerTo" destination="tPh-wO-KUh" id="yXC-6X-KUZ"/>
                         <outlet property="filteSegmentedControl" destination="HLN-LP-8DA" id="9DE-tZ-txU"/>
+                        <outlet property="filteSwitch" destination="DY5-Pb-Y3Y" id="JzG-eA-cV7"/>
                         <outlet property="orderBySwitch" destination="qtf-rg-jgv" id="QOl-0J-LMS"/>
                         <outlet property="searchBar" destination="jge-OP-8yc" id="kuq-R2-d5v"/>
                         <outlet property="searchByDateView" destination="1V1-uj-1Da" id="Jy7-xh-Xn1"/>
@@ -445,6 +446,28 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOo-ld-I6z">
+                                <rect key="frame" x="8" y="391" width="174.5" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Clients">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="1sT-XC-ryM" kind="show" id="xd9-PS-2Lj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heF-KT-jCs">
+                                <rect key="frame" x="192" y="391" width="174.5" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Employees">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jcD-nB-x9z" kind="show" id="M2E-6B-nD3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -507,6 +530,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dwx-On-8gZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1816.8" y="-461.01949025487261"/>
+        </scene>
+        <!--ClientsVC-->
+        <scene sceneID="76B-mF-bCi">
+            <objects>
+                <tableViewController id="1sT-XC-ryM" customClass="ClientsVC" customModule="CarService" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tz6-Mr-xsD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="1sT-XC-ryM" id="UHE-rV-J6l"/>
+                            <outlet property="delegate" destination="1sT-XC-ryM" id="qkE-ZV-xQt"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6dJ-kK-6E2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1513" y="345"/>
+        </scene>
+        <!--All EmployeesVC-->
+        <scene sceneID="UHO-Mo-0K0">
+            <objects>
+                <tableViewController id="jcD-nB-x9z" customClass="AllEmployeesVC" customModule="CarService" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="SqT-Q8-ZZD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="jcD-nB-x9z" id="DQu-gf-SDB"/>
+                            <outlet property="delegate" destination="jcD-nB-x9z" id="iPA-7i-48k"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lVY-Bf-ZYq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2161" y="345"/>
         </scene>
         <!--Service TypeVC-->
         <scene sceneID="Z1F-Bo-PVn">
@@ -593,7 +652,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ep4-Pt-SI4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3005.5999999999999" y="-77.811094452773617"/>
+            <point key="canvasLocation" x="3006" y="-138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cvo-Ng-9j6">

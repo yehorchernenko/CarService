@@ -104,6 +104,8 @@ class LoginVC: UIViewController {
 
         
        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
+    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,6 +113,7 @@ class LoginVC: UIViewController {
         
         loginTextField.text = ""
         passwordTextField.text = ""
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

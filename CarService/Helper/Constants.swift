@@ -20,3 +20,5 @@ let categoryCellIdentifier = "CategoryCellReuseIdentifier"
 
 //service vc
 let serviceCellIdentifier = "ServiceCellIReuseIdentifier"
+
+let clientCellID = "clientCellID"

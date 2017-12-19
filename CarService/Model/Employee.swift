@@ -177,4 +177,13 @@ class Employee{
         }
     }
     
+    class func delete(byLogin login: String){
+        let alice = table.where(loginExpression == login)
+        
+        do{
+           try DataBase.shared.connection.run(alice.delete())
+        } catch{
+            print("can't delte employee")
+        }
+    }
 }

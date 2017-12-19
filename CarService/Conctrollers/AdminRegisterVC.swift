@@ -39,6 +39,11 @@ class AdminRegisterVC: UIViewController {
             else {
                 somethingGoWrongAlert(message: "Please fill all gaps")
                 return
+            }
+        
+        if Employee.selectEmployeeFromLogin(login: login) != nil{
+            somethingGoWrongAlert(message: "Please choose another login")
+            return
         }
         
         if password.count < 6{

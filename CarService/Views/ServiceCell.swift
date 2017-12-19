@@ -18,6 +18,13 @@ class ServiceCell: UITableViewCell {
     @IBOutlet weak var incomeDateLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        descriptionTextView.layer.cornerRadius = 5
+        descriptionTextView.layer.masksToBounds = true
+    }
     
     @IBAction func onProccesSwitchValueChanged(_ sender: UISwitch) {
         guard let idStr = idLabel.text, let id = Int(idStr) else {return}

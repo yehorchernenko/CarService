@@ -21,8 +21,9 @@ class ServiceManagerVC: UIViewController {
     @IBOutlet var searchByProccesView: UIView!
     @IBOutlet var searchByDateView: UIView!
     
+    @IBOutlet weak var filteSwitch: UISwitch!
     //MARK: - Properties
-    var services = [Service]()
+    var services = [ExtendedService]()
     var dateToSearchFrom = Date()
     var dateToSearchTo = Date()
 
@@ -56,8 +57,9 @@ class ServiceManagerVC: UIViewController {
     }
     
     private func fillTableView(){
+
         
-        Service.selectAll { [weak self] retrivedServices in
+        ExtendedService.selectAllEX { [weak self] retrivedServices in
             self?.services = retrivedServices
             self?.tableView.reloadData()
         }
@@ -95,9 +97,9 @@ class ServiceManagerVC: UIViewController {
     
     //process
     @IBAction func searchByPocessSwitchValueChanged(_ sender: UISwitch) {
-        Service.select(byProcessState: sender.isOn, services: {  [weak self] retrivedServices in
-            self?.services = retrivedServices
-            self?.tableView.reloadData()
+        ExtendedService.selectEX(byProcessState: filteSwitch.isOn, services: { [weak self] retrivedServices in
+                self?.services = retrivedServices
+                self?.tableView.reloadData()
         })
     }
     
@@ -118,12 +120,11 @@ class ServiceManagerVC: UIViewController {
         self.bachgroundView.isHidden = true
         filteSegmentedControl.selectedSegmentIndex = 0
         
-        
-        Service.select(fromDate: dateToSearchFrom, to: dateToSearchTo){ [weak self] retrivedServices in
+        ExtendedService.selectEX(fromDate: dateToSearchFrom, to: dateToSearchTo) { [weak self] retrivedServices in
             self?.services = retrivedServices
             self?.tableView.reloadData()
-            
         }
+
     }
         
         @IBAction func dismissDateView(_ sender: Any) {
@@ -144,13 +145,18 @@ extension ServiceManagerVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: serviceCellIdentifier, for: indexPath) as! ServiceCell
         
-        
         cell.idLabel.text = "\(services[indexPath.row].id!)"
-        cell.employeeLabel.text = "Performer: \(services[indexPath.row].employee)"
-        cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].serviceType)"
+        cell.employeeLabel.text = "  Performer: \(services[indexPath.row].employeePosition) \(services[indexPath.row].employeeName) \(services[indexPath.row].employeeSurname) login(\(services[indexPath.row].employee))"
+        cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].typeName) \(services[indexPath.row].typeDescription) (id: \(services[indexPath.row].serviceType))"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         cell.incomeDateLabel.text = "Income date: \(incomeDate(services[indexPath.row].date))"
-        cell.descriptionTextView.text = "Car serial number: \(services[indexPath.row].car)"
+        cell.descriptionTextView.text = """
+        Car serial number: \(services[indexPath.row].car)
+        Model: \(services[indexPath.row].carBrand) \(services[indexPath.row].carModel)
+        color: \(services[indexPath.row].carColor)
+        Owner: \(services[indexPath.row].ownerName) \(services[indexPath.row].ownerSurname)
+        """
+        cell.priceLabel.text = "Price: \(services[indexPath.row].typePrice) USD"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         
         return cell
@@ -197,16 +203,17 @@ extension ServiceManagerVC: UISearchBarDelegate{
                     somethingGoWrongAlert(message: "Use number for seearch by ID")
                     return
                 }
-                Service.select(byId: id, services: {  [weak self] retrivedServices in
+                ExtendedService.selectEX(byId: id, services: { [weak self] retrivedServices in
                     self?.services = retrivedServices
                     self?.tableView.reloadData()
                 })
+
             case 1:
                 guard let serailNumStr = searchBar.text, let serailNum = Int(serailNumStr) else {
                     somethingGoWrongAlert(message: "Use number for seearch by ID")
                     return
                 }
-                Service.select(bySerialNumber: serailNum, services: {  [weak self] retrivedServices in
+                ExtendedService.selectEX(bySerialNumber: serailNum, services: {  [weak self] retrivedServices in
                     self?.services = retrivedServices
                     self?.tableView.reloadData()
                 })
@@ -215,7 +222,7 @@ extension ServiceManagerVC: UISearchBarDelegate{
                     somethingGoWrongAlert(message: "Use number for seearch by ID")
                     return
                 }
-                Service.select(byServiceTypeId: serviceTypeId, services: {  [weak self] retrivedServices in
+                ExtendedService.selectEX(byServiceTypeId: serviceTypeId, services: { [weak self] retrivedServices in
                     self?.services = retrivedServices
                     self?.tableView.reloadData()
                 })
@@ -224,9 +231,15 @@ extension ServiceManagerVC: UISearchBarDelegate{
                     somethingGoWrongAlert(message: "Check your spell")
                     return
                 }
-                Service.select(byEmployeeLogin: employeeLogin, services: {  [weak self] retrivedServices in
+                
+                ExtendedService.selectEX(byEmployeeLogin: employeeLogin, services: { [weak self] retrivedServices in
                     self?.services = retrivedServices
                     self?.tableView.reloadData()
+                })
+            case 4:
+                ExtendedService.selectEX(byProcessState: filteSwitch.isOn, services: { [weak self] retrivedServices in
+                        self?.services = retrivedServices
+                        self?.tableView.reloadData()
                 })
             default:
                 fillTableView()

@@ -83,6 +83,22 @@ class ServiceType{
         }
     }
     
+    class func selectAllFrom(id: Int) -> ServiceType?{
+        do{
+            let request = table.where(id == idExpression).limit(1)
+            
+            if let serviceTypeRow = try DataBase.shared.connection.pluck(request){
+                
+                let serviceType = ServiceType(id: serviceTypeRow[idExpression], name: serviceTypeRow[nameExpression], description: serviceTypeRow[descriptionExpression], price: serviceTypeRow[priceExpression])
+                return serviceType
+            }
+            
+        } catch{
+            print("Throw error when select all information for owner login: \(error.localizedDescription)")
+        }
+        
+        return nil
+    }
     
     //DELTE
     

@@ -20,7 +20,7 @@ class ServiceVC: UIViewController {
     var allCars = [Car]() //get cars from owner vc
     var allEmployees = [Employee]()
     var allSeriveTypes = [ServiceType]()
-    var services = [Service]()
+    var services = [ExtendedService]()
     
     var currentCar: Car?
     var currentEmployee: Employee?
@@ -55,16 +55,17 @@ class ServiceVC: UIViewController {
     private func fillTableView(){
         
         if isOwnerServices {
-            Service.select(forUserCars: allCars){ [weak self] retrivedServices in
+            ExtendedService.selectEX(forUserCars: allCars, services: { [weak self] retrivedServices in
                 self?.services = retrivedServices
                 self?.tableView.reloadData()
-            }
+            })
+
         }
         else {
-            Service.selectAll { [weak self] retrivedServices in
+            ExtendedService.selectAllEX({ [weak self] retrivedServices in
                 self?.services = retrivedServices
                 self?.tableView.reloadData()
-            }
+            })
         }
     }
     
@@ -178,11 +179,17 @@ extension ServiceVC: UITableViewDelegate, UITableViewDataSource{
         
         
         cell.idLabel.text = "\(services[indexPath.row].id!)"
-        cell.employeeLabel.text = "Performer: \(services[indexPath.row].employee)"
-        cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].serviceType)"
+        cell.employeeLabel.text = "  Performer: \(services[indexPath.row].employeePosition) (\(services[indexPath.row].employeeName) \(services[indexPath.row].employeeSurname))"
+        cell.serviceTypeNameLabel.text = "Category of work: \(services[indexPath.row].typeName) \(services[indexPath.row].typeDescription) (id: \(services[indexPath.row].serviceType)"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         cell.incomeDateLabel.text = "Income date: \(incomeDate(services[indexPath.row].date))"
-        cell.descriptionTextView.text = "Car serial number: \(services[indexPath.row].car)"
+        cell.descriptionTextView.text = """
+        Car serial number: \(services[indexPath.row].car)
+        Model: \(services[indexPath.row].carBrand) \(services[indexPath.row].carModel)
+        color: \(services[indexPath.row].carColor)
+        Owner: \(services[indexPath.row].ownerName) \(services[indexPath.row].ownerSurname)
+        """
+        cell.priceLabel.text = "Price: \(services[indexPath.row].typePrice) USD"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         
         return cell

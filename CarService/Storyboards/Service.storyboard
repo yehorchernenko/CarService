@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9fd-Ii-yqf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9fd-Ii-yqf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -25,8 +25,8 @@
                                     <constraint firstAttribute="height" constant="72" id="G5Z-DX-vbA"/>
                                 </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Car:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-rE-eDX">
-                                <rect key="frame" x="16" y="67" width="32" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuG-rE-eDX">
+                                <rect key="frame" x="16" y="67" width="28.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -37,8 +37,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ss-KI-4XC">
-                                <rect key="frame" x="195" y="89" width="158" height="72"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Ss-KI-4XC">
+                                <rect key="frame" x="195" y="89" width="172" height="72"/>
                             </pickerView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nW-sG-Bb8">
                                 <rect key="frame" x="16" y="179" width="156" height="71"/>
@@ -46,8 +46,8 @@
                                     <constraint firstAttribute="height" constant="71" id="lWc-D3-Lgd"/>
                                 </constraints>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Employee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTQ-aa-smX">
-                                <rect key="frame" x="16" y="157" width="77" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Employee:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTQ-aa-smX">
+                                <rect key="frame" x="16" y="160" width="71" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -61,8 +61,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECB-Cq-Y6C">
-                                <rect key="frame" x="195" y="157" width="77" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECB-Cq-Y6C">
+                                <rect key="frame" x="195" y="160" width="36.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -99,6 +99,7 @@
                             <constraint firstItem="mdS-gV-cX7" firstAttribute="leading" secondItem="qe2-G5-Bbl" secondAttribute="leading" id="PLW-pb-GUx"/>
                             <constraint firstItem="qe2-G5-Bbl" firstAttribute="baseline" secondItem="uuG-rE-eDX" secondAttribute="baseline" id="Poo-P6-oQN"/>
                             <constraint firstItem="0SX-VJ-me0" firstAttribute="trailing" secondItem="EhY-rc-fSJ" secondAttribute="trailing" id="QU8-l4-pPP"/>
+                            <constraint firstItem="EhY-rc-fSJ" firstAttribute="trailing" secondItem="9Ss-KI-4XC" secondAttribute="trailing" constant="8" id="RM4-pi-5Ui"/>
                             <constraint firstItem="5nW-sG-Bb8" firstAttribute="top" secondItem="rTQ-aa-smX" secondAttribute="bottom" constant="1" id="SQz-2R-q4T"/>
                             <constraint firstItem="5nW-sG-Bb8" firstAttribute="leading" secondItem="rTQ-aa-smX" secondAttribute="leading" id="Tdi-u5-D1F"/>
                             <constraint firstItem="z8j-Mk-veY" firstAttribute="leading" secondItem="EhY-rc-fSJ" secondAttribute="leading" constant="8" id="YCF-HK-rhK"/>

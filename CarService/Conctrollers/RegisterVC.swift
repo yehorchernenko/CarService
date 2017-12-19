@@ -36,6 +36,11 @@ class RegisterVC: UIViewController {
             return
         }
         
+        if Owner.selectAllFrom(login: login) != nil{
+            somethingGoWrongAlert(message: "Please choose another login")
+            return
+        }
+        
         if password.count < 6{
             somethingGoWrongAlert(message: "Password have to be at least 6 char.")
             return

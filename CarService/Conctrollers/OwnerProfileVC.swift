@@ -175,6 +175,7 @@ extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
         cell.brandLabel.text = cars[indexPath.row].brand
         cell.modelLabel.text = cars[indexPath.row].model
         cell.ownerLabel.text = cars[indexPath.row].owner
+        cell.colorLabel.text = "Color: \(cars[indexPath.row].color)"
         return cell
     }
     
