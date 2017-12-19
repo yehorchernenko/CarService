@@ -76,5 +76,6 @@ class AllEmployeesVC: UITableViewController {
         let alert = UIAlertController(title: "Employee has been dismissed", message: nil, preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
     }
 }
