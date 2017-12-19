@@ -95,6 +95,13 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        do{
+            try DataBase.shared.connection.execute("PRAGMA foreign_keys = ON;")
+        } catch {
+            print("foreign key error")
+        }
+
         
        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last);
     }

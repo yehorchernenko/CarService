@@ -14,26 +14,27 @@ class ServiceManagerVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filteSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var datePickerFro : UIDatePicker!
+    @IBOutlet weak var datePickerTo: UIDatePicker!
     @IBOutlet weak var searchContainerView: UIView!
     @IBOutlet weak var orderBySwitch: UISwitch!
-    
     @IBOutlet var searchByProccesView: UIView!
     @IBOutlet var searchByDateView: UIView!
     
     //MARK: - Properties
     var services = [Service]()
-    var dateToSearch = Date()
+    var dateToSearchFrom = Date()
+    var dateToSearchTo = Date()
+
+    var bachgroundView = UIView()
+    
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchContainerView.addSubview(searchByDateView)
-        searchByDateView.frame.size.width = UIScreen.main.bounds.width
+        setDateFilterViewAndDateRepresenation()
         searchContainerView.addSubview(searchByProccesView)
         searchByProccesView.frame.size.width = UIScreen.main.bounds.width
-
-
         
         registerCell()
         fillTableView()
@@ -41,6 +42,19 @@ class ServiceManagerVC: UIViewController {
     
     
     //MARK: - Methods
+    private func setDateFilterViewAndDateRepresenation(){
+        self.view.addSubview(bachgroundView)
+        bachgroundView.frame = self.view.frame
+        bachgroundView.backgroundColor = UIColor.black
+        bachgroundView.alpha = 0.5
+        bachgroundView.isHidden = true
+        
+        self.view.addSubview(searchByDateView)
+        searchByDateView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: 200)
+        searchByDateView.center = view.center
+        
+    }
+    
     private func fillTableView(){
         
         Service.selectAll { [weak self] retrivedServices in
@@ -60,12 +74,16 @@ class ServiceManagerVC: UIViewController {
         case 4:
             searchByProccesView.isHidden = false
             searchByDateView.isHidden = true
+            bachgroundView.isHidden = true
+
         case 5:
             searchByProccesView.isHidden = true
             searchByDateView.isHidden = false
+            bachgroundView.isHidden = false
         default:
             searchByProccesView.isHidden = true
             searchByDateView.isHidden = true
+            bachgroundView.isHidden = true
         }
         fillTableView()
     }
@@ -85,13 +103,33 @@ class ServiceManagerVC: UIViewController {
     
     //date
     @IBAction func datePickerValueChanged(_ sender: UIDatePicker) {
-        dateToSearch = sender.date
+        if sender == datePickerFro{
+            dateToSearchFrom = sender.date
+        }
+        
+        if sender == datePickerTo{
+            dateToSearchTo = sender.date
+        }
+        
     }
     @IBAction func searchByDateButtonPressed(_ sender: UIButton) {
-        Service.select(byDate: dateToSearch, services: {  [weak self] retrivedServices in
+        
+        self.searchByDateView.isHidden = true
+        self.bachgroundView.isHidden = true
+        filteSegmentedControl.selectedSegmentIndex = 0
+        
+        
+        Service.select(fromDate: dateToSearchFrom, to: dateToSearchTo){ [weak self] retrivedServices in
             self?.services = retrivedServices
             self?.tableView.reloadData()
-        })
+            
+        }
+    }
+        
+        @IBAction func dismissDateView(_ sender: Any) {
+        self.searchByDateView.isHidden = true
+        self.bachgroundView.isHidden = true
+        filteSegmentedControl.selectedSegmentIndex = 0
     }
     
 }

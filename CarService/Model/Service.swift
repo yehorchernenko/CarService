@@ -266,10 +266,13 @@ class Service{
         }
     }
     
-    class func select(byDate date: Date, services: @escaping ([Service]) -> Void){
+    class func select(fromDate from: Date, to: Date, services: @escaping ([Service]) -> Void){
         var retrievedServices = [Service]()
         
-        let alice = table.where(dateExpression == date).order(idExpression.asc)
+        print("**from \(from)")
+        print("**to \(to)")
+
+        let alice = table.filter(from...to ~= dateExpression)
         
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
