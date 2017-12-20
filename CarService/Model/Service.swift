@@ -58,7 +58,7 @@ class Service{
         }
         
     }
-    
+
     class func insert(_ service: Service){
         let insert = table.insert(carExpression <- service.car,
                                   serviceTypeExpression <- service.serviceType,

@@ -446,28 +446,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOo-ld-I6z">
-                                <rect key="frame" x="8" y="391" width="174.5" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Clients">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="1sT-XC-ryM" kind="show" id="xd9-PS-2Lj"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heF-KT-jCs">
-                                <rect key="frame" x="192" y="391" width="174.5" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Employees">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="jcD-nB-x9z" kind="show" id="M2E-6B-nD3"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9l7-ME-Ayx">
+                                <rect key="frame" x="8" y="391" width="359" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOo-ld-I6z">
+                                        <rect key="frame" x="0.0" y="0.0" width="174.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Clients">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="1sT-XC-ryM" kind="show" id="xd9-PS-2Lj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heF-KT-jCs">
+                                        <rect key="frame" x="184.5" y="0.0" width="174.5" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Employees">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="jcD-nB-x9z" kind="show" id="M2E-6B-nD3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -486,17 +489,20 @@
                             <constraint firstItem="WqJ-4J-agD" firstAttribute="top" secondItem="bY0-uA-Zyu" secondAttribute="top" constant="145" id="Udj-Vz-m5N"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="trailing" secondItem="AHl-pk-0Lk" secondAttribute="trailing" id="Vci-yx-LVr"/>
                             <constraint firstItem="hyw-YZ-fd8" firstAttribute="leading" secondItem="wd4-fK-ise" secondAttribute="leading" constant="8" id="Ygd-AN-Edi"/>
+                            <constraint firstItem="9l7-ME-Ayx" firstAttribute="top" secondItem="hyw-YZ-fd8" secondAttribute="bottom" constant="8" id="ZXX-be-L2E"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="top" secondItem="bY0-uA-Zyu" secondAttribute="top" constant="302" id="agC-Pu-Qex"/>
                             <constraint firstItem="wd4-fK-ise" firstAttribute="trailing" secondItem="hyw-YZ-fd8" secondAttribute="trailing" constant="8" id="cMN-3f-JTJ"/>
                             <constraint firstItem="uCx-Q0-IXR" firstAttribute="trailing" secondItem="xMX-JS-0Fl" secondAttribute="trailing" id="eeN-X1-Qx5"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="leading" secondItem="AHl-pk-0Lk" secondAttribute="leading" id="fVa-hV-Nqh"/>
                             <constraint firstItem="WqJ-4J-agD" firstAttribute="top" secondItem="wsM-cq-hqM" secondAttribute="bottom" constant="22" id="hsV-40-hfF"/>
+                            <constraint firstItem="9l7-ME-Ayx" firstAttribute="leading" secondItem="wd4-fK-ise" secondAttribute="leading" constant="8" id="if3-7u-3vA"/>
                             <constraint firstItem="xMX-JS-0Fl" firstAttribute="top" secondItem="uCx-Q0-IXR" secondAttribute="bottom" constant="3" id="kT5-sS-BRz"/>
                             <constraint firstItem="WqJ-4J-agD" firstAttribute="leading" secondItem="uCx-Q0-IXR" secondAttribute="trailing" constant="17" id="naK-wr-San"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="trailing" secondItem="hyw-YZ-fd8" secondAttribute="trailing" id="nyh-E2-jas"/>
                             <constraint firstItem="HS7-BC-ACm" firstAttribute="baseline" secondItem="LvR-7f-XHP" secondAttribute="baseline" id="pnV-Ee-DMG"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="top" secondItem="LvR-7f-XHP" secondAttribute="bottom" constant="22" id="qZX-SB-Saa"/>
                             <constraint firstItem="HS7-BC-ACm" firstAttribute="leading" secondItem="xMX-JS-0Fl" secondAttribute="leading" id="r0h-Sc-sDE"/>
+                            <constraint firstItem="wd4-fK-ise" firstAttribute="trailing" secondItem="9l7-ME-Ayx" secondAttribute="trailing" constant="8" id="rHO-my-2n8"/>
                             <constraint firstItem="LF3-zF-cCe" firstAttribute="leading" secondItem="Bcq-qs-bDP" secondAttribute="trailing" constant="17" id="sDa-er-G2B"/>
                             <constraint firstItem="uCx-Q0-IXR" firstAttribute="leading" secondItem="bY0-uA-Zyu" secondAttribute="leadingMargin" id="txJ-n5-PsB"/>
                             <constraint firstItem="uCx-Q0-IXR" firstAttribute="trailing" secondItem="HS7-BC-ACm" secondAttribute="trailing" id="zYF-lW-Pww"/>

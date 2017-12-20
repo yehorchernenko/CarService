@@ -26,6 +26,7 @@
 		746026F91FE996AD00277763 /* ClientCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746026F71FE996AD00277763 /* ClientCell.swift */; };
 		746026FA1FE996AD00277763 /* ClientCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746026F81FE996AD00277763 /* ClientCell.xib */; };
 		746026FC1FE99E8800277763 /* AllEmployeesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746026FB1FE99E8800277763 /* AllEmployeesVC.swift */; };
+		746026FE1FEA6A2500277763 /* PayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746026FD1FEA6A2500277763 /* PayVC.swift */; };
 		747A88411FCC8A6A00491AD7 /* EmployeeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */; };
 		747C4C7F1FDD5A050084812F /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747C4C7D1FDD5A050084812F /* ServiceCell.swift */; };
 		747C4C801FDD5A050084812F /* ServiceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 747C4C7E1FDD5A050084812F /* ServiceCell.xib */; };
@@ -140,6 +141,7 @@
 		746026F71FE996AD00277763 /* ClientCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientCell.swift; sourceTree = "<group>"; };
 		746026F81FE996AD00277763 /* ClientCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientCell.xib; sourceTree = "<group>"; };
 		746026FB1FE99E8800277763 /* AllEmployeesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEmployeesVC.swift; sourceTree = "<group>"; };
+		746026FD1FEA6A2500277763 /* PayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayVC.swift; sourceTree = "<group>"; };
 		747A88401FCC8A6A00491AD7 /* EmployeeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeVC.swift; sourceTree = "<group>"; };
 		747C4C7D1FDD5A050084812F /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		747C4C7E1FDD5A050084812F /* ServiceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceCell.xib; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				748EC9AD1FE6C1420076790B /* ServiceManagerVC.swift */,
 				746026F31FE9965500277763 /* ClientsVC.swift */,
 				746026FB1FE99E8800277763 /* AllEmployeesVC.swift */,
+				746026FD1FEA6A2500277763 /* PayVC.swift */,
 			);
 			path = Conctrollers;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				74A868D41F9BABB100DD0A77 /* AppDelegate.swift in Sources */,
 				74541BBD1FD53893008D6F0A /* ServiceTypeVC.swift in Sources */,
 				74A0CF551FC1B18B00BF78DE /* UIViewController + SomethongGoWrongAlert.swift in Sources */,
+				746026FE1FEA6A2500277763 /* PayVC.swift in Sources */,
 				746026EA1FE9029200277763 /* ExtendedService.swift in Sources */,
 				747C4C7F1FDD5A050084812F /* ServiceCell.swift in Sources */,
 				742CFDAF1FC0A1B700142F30 /* Constants.swift in Sources */,

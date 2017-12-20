@@ -26,6 +26,8 @@ class ServiceVC: UIViewController {
     var currentEmployee: Employee?
     var currentServiceType: ServiceType?
     
+    var currentService: ExtendedService!
+    
     //can be nil because we will reuse this VC for admin
     var isOwnerServices = true
     
@@ -80,7 +82,7 @@ class ServiceVC: UIViewController {
             let serviceTypeId = currentServiceType?.id
             else{ somethingGoWrongAlert(message: "Please select row in picker"); return}
         
-        let newService = Service(id: nil, car: carSerialNum, serviceType: serviceTypeId, employee: employeeLogin, onProcess: true)
+        let newService = Service(id: nil, car: carSerialNum, serviceType: serviceTypeId, employee: employeeLogin, onProcess: false)
         
         Service.insert(newService)
         
@@ -163,6 +165,13 @@ extension ServiceVC: UIPickerViewDelegate, UIPickerViewDataSource{
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let payVc = segue.destination as? PayVC{
+            if self.currentService != nil{
+                payVc.service = self.currentService
+            }
+        }
+    }
 }
 
 
@@ -209,6 +218,12 @@ extension ServiceVC: UITableViewDelegate, UITableViewDataSource{
             tableView.reloadData()
             
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.currentService = services[indexPath.row]
+        
+        performSegue(withIdentifier: "payId", sender: nil)
     }
     
    //additonal mehod
