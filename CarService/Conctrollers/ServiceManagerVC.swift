@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 
-class ServiceManagerVC: UIViewController {
+class ServiceManagerVC: UIViewController, IMessage, UINavigationControllerDelegate {
+
 
     //MARK: - Oultes
     @IBOutlet weak var tableView: UITableView!
@@ -42,6 +44,7 @@ class ServiceManagerVC: UIViewController {
     }
     
     
+    
     //MARK: - Methods
     private func setDateFilterViewAndDateRepresenation(){
         self.view.addSubview(bachgroundView)
@@ -58,10 +61,10 @@ class ServiceManagerVC: UIViewController {
     
     private func fillTableView(){
 
-        
         ExtendedService.selectAllEX { [weak self] retrivedServices in
             self?.services = retrivedServices
             self?.tableView.reloadData()
+            
         }
         
     }
@@ -159,6 +162,9 @@ extension ServiceManagerVC: UITableViewDelegate, UITableViewDataSource{
         cell.priceLabel.text = "Price: \(services[indexPath.row].typePrice) USD"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
         
+        cell.service = services[indexPath.row]
+        cell.delegate = self
+        
         return cell
     }
     
@@ -249,6 +255,24 @@ extension ServiceManagerVC: UISearchBarDelegate{
         }
 
     }
+    
+    func sendMessageToUser(byPhoneNumber number: String, text: String) {
+        if MFMessageComposeViewController.canSendText(){
+            let messageController = MFMessageComposeViewController()
+            messageController.delegate = self
+            messageController.recipients = [number]
+            messageController.messageComposeDelegate = self
+            messageController.body = text
+            self.present(messageController, animated: true, completion: nil)
+        }
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
 
+protocol IMessage: MFMessageComposeViewControllerDelegate {
+    func sendMessageToUser(byPhoneNumber number: String, text: String)
+}
 

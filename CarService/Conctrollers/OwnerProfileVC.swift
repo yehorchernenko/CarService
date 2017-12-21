@@ -125,7 +125,7 @@ class OwnerProfileVC: UIViewController {
         //SELECT * FROM Owner WHERE login == ownerLogin LIMIT 1
 
         if let ownerLogin = login,
-            let owner = Owner.selectAllFrom(login: ownerLogin){
+            let owner = Owner.selectForUserlogin(login: ownerLogin){
             
             nameTextField.text = owner.name
             surnameTextField.text = owner.surname
@@ -171,10 +171,10 @@ extension OwnerProfileVC: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: carCellIdentifier, for: indexPath) as! CarCell
         cell.carImageView.image = UIImage.fromDatatypeValue(cars[indexPath.row].image)
-        cell.serialNumberLabel.text = "\(cars[indexPath.row].serialNumber)"
-        cell.brandLabel.text = cars[indexPath.row].brand
-        cell.modelLabel.text = cars[indexPath.row].model
-        cell.ownerLabel.text = cars[indexPath.row].owner
+        cell.serialNumberLabel.text = "ID \(cars[indexPath.row].serialNumber)"
+        cell.brandLabel.text = "Brand: \(cars[indexPath.row].brand)"
+        cell.modelLabel.text = "Model: \(cars[indexPath.row].model)"
+        cell.ownerLabel.text = "Owner: \(cars[indexPath.row].owner)"
         cell.colorLabel.text = "Color: \(cars[indexPath.row].color)"
         return cell
     }

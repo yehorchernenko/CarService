@@ -36,7 +36,7 @@ class RegisterVC: UIViewController {
             return
         }
         
-        if Owner.selectAllFrom(login: login) != nil{
+        if Owner.selectForUserlogin(login: login) != nil{
             somethingGoWrongAlert(message: "Please choose another login")
             return
         }

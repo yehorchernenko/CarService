@@ -30,6 +30,7 @@ class ClientsVC: UITableViewController {
         Owner.selectAll { retrievedOwners in
             self.owners = retrievedOwners
             self.tableView.reloadData()
+            
         }
     }
 

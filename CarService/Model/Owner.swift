@@ -119,7 +119,7 @@ class Owner{
         }
     }
     
-    class func selectAllFrom(login: String) -> Owner?{
+    class func selectForUserlogin( login: String) -> Owner?{
         do{
             let request = table.where(login == loginExpression).limit(1)
             

@@ -148,7 +148,7 @@ extension ServiceVC: UIPickerViewDelegate, UIPickerViewDataSource{
         } else if pickerView == serviceTypePicker{
             return allSeriveTypes[row].name
         } else if pickerView == employeePicker{
-            return allEmployees[row].name + " " + allEmployees[row].surname
+            return allEmployees[row].position + " " + allEmployees[row].surname
         } else {
             return nil
         }
@@ -200,6 +200,7 @@ extension ServiceVC: UITableViewDelegate, UITableViewDataSource{
         """
         cell.priceLabel.text = "Price: \(services[indexPath.row].typePrice) USD"
         cell.onProccesSwitch.isOn = services[indexPath.row].onProcess
+        cell.onProccesSwitch.isUserInteractionEnabled = false
         
         return cell
     }

@@ -21,8 +21,8 @@ class ExtendedService: Service{
     //MARK: - Owner
     let ownerName: String
     let ownerSurname: String
+    let ownerLogin: String
     
-
     //MARK: - Employee
     var employeeName: String
     var employeeSurname: String
@@ -36,7 +36,7 @@ class ExtendedService: Service{
     //pk is serviceType prop
 
     
-    init(id: Int?, car: Int, serviceType: Int, employee: String, onProcess: Bool,carOwner: String, carBrand: String,carModel: String,carColor: String,ownerName: String,ownerSurname: String,employeeName: String,employeeSurname: String,employeePosition: String,typeName: String,typeDescription: String,typePrice: Double) {
+    init(id: Int?, car: Int, serviceType: Int, employee: String, onProcess: Bool,carOwner: String, carBrand: String,carModel: String,carColor: String,ownerName: String,ownerSurname: String,ownerLogin: String, employeeName: String,employeeSurname: String,employeePosition: String,typeName: String,typeDescription: String,typePrice: Double) {
         self.carOwner = carOwner
         self.carBrand = carBrand
         self.carModel = carModel
@@ -44,6 +44,7 @@ class ExtendedService: Service{
         
         self.ownerName = ownerName
         self.ownerSurname = ownerSurname
+        self.ownerLogin = ownerLogin
         
         self.employeeName = employeeName
         self.employeeSurname = employeeSurname
@@ -67,11 +68,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(query){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrivedServices.append(service)
             }
@@ -95,11 +96,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(query){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 let _ = cars.contains {  car in
                     if car.serialNumber == service.car{
@@ -130,11 +131,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrievedServices.append(service)
             }
@@ -158,11 +159,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 
                 retrievedServices.append(service)
@@ -186,11 +187,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrievedServices.append(service)
             }
@@ -213,11 +214,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrievedServices.append(service)
             }
@@ -239,11 +240,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrievedServices.append(service)
             }
@@ -269,11 +270,11 @@ class ExtendedService: Service{
         do{
             for serviceRow in try DataBase.shared.connection.prepare(alice){
                 
-                let ownerInfo = Owner.selectAllFrom(login: serviceRow[Car.ownerExpression])
+                let ownerInfo = Owner.selectForUserlogin(login: serviceRow[Car.ownerExpression])
                 let employeeInfo = Employee.selectEmployeeFromLogin(login: serviceRow[employeeExpression])
                 let serviceTypeInfo = ServiceType.selectAllFrom(id: serviceRow[serviceTypeExpression])
                 
-                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
+                let service = ExtendedService(id: serviceRow[idExpression], car: serviceRow[carExpression], serviceType: serviceRow[serviceTypeExpression], employee: serviceRow[employeeExpression],onProcess: serviceRow[onProcessExpression], carOwner: serviceRow[Car.ownerExpression], carBrand: serviceRow[Car.brandExpression], carModel: serviceRow[Car.modelExpression], carColor: serviceRow[Car.colorExpression], ownerName: ownerInfo!.name, ownerSurname: ownerInfo!.surname, ownerLogin: ownerInfo!.login, employeeName: employeeInfo!.name, employeeSurname: employeeInfo!.surname, employeePosition: employeeInfo!.position, typeName: serviceTypeInfo!.name, typeDescription: serviceTypeInfo!.description, typePrice: serviceTypeInfo!.price)
                 
                 retrievedServices.append(service)
             }

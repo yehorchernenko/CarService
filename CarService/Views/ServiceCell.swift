@@ -20,6 +20,9 @@ class ServiceCell: UITableViewCell {
     
     @IBOutlet weak var priceLabel: UILabel!
     
+    var service: ExtendedService?
+    var delegate: IMessage?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         descriptionTextView.layer.cornerRadius = 5
@@ -27,8 +30,14 @@ class ServiceCell: UITableViewCell {
     }
     
     @IBAction func onProccesSwitchValueChanged(_ sender: UISwitch) {
-        guard let idStr = idLabel.text, let id = Int(idStr) else {return}
+        guard let id = service?.id, let login = service?.ownerLogin else {return}
         Service.updateProcess(state: sender.isOn, byId: id)
+        
+        guard let currentOwner = Owner.selectForUserlogin(login: login) else {return}
+        
+        let text = "Dear \(currentOwner.name) \(currentOwner.surname) your order #\(id) change process status to:  \(sender.isOn ? "In work" : "Paused"). CarService "
+        
+        delegate?.sendMessageToUser(byPhoneNumber: currentOwner.phone, text: text)
     }
     
 }

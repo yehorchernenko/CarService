@@ -31,6 +31,7 @@ class AllEmployeesVC: UITableViewController {
         Employee.selectAll { retrievedEmployees in
             self.employees = retrievedEmployees
             self.tableView.reloadData()
+            
         }
     }
     
