@@ -20,7 +20,6 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var phoneLbl: UITextField!
     @IBOutlet weak var loginLbl: UITextField!
     @IBOutlet weak var passwordLbl: UITextField!
-    @IBOutlet weak var continueButtonBottomConstraint: NSLayoutConstraint!
     
     @IBAction func continueButtonAction(_ sender: UIButton) {
         guard let imageData = profileImage.image?.datatypeValue,
@@ -63,8 +62,6 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterVC.keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(RegisterVC.keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         
         Owner.createTable()
 
@@ -72,21 +69,7 @@ class RegisterVC: UIViewController {
         picker.delegate = self
     }
     
-    @objc func keyboardWillShow(notification: Notification){
-        if let keyBoardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue{
-            if self.continueButtonBottomConstraint.constant == 0{
-                self.continueButtonBottomConstraint.constant += keyBoardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification){
-        if ((notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue) != nil{
-            if self.continueButtonBottomConstraint.constant != 0{
-                self.continueButtonBottomConstraint.constant = 0
-            }
-        }
-    }
+
 
     private func setGesture(){
         let imageViewGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePicker))
